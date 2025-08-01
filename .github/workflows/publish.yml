@@ -1,0 +1,55 @@
+name: Publish
+on:
+  push:
+    tags: [ '*' ]
+jobs:
+  publish:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'corretto'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Cache Kotlin/Native toolchains
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: ${{ runner.os }}-konan-${{ hashFiles('settings.gradle.kts') }}
+          restore-keys: |
+            ${{ runner.os }}-konan-
+
+      - name: Install Vulkan SDK
+        uses: technoir42/install-vulkan-sdk@v1.2.1
+        with:
+          version: 1.4.309.0
+          cache: true
+
+      - name: Build
+        env:
+          GITHUB_USER: ${{ github.repository_owner }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          C_INCLUDE_PATH: ${{ env.VULKAN_SDK }}/include
+          LIBRARY_PATH: ${{ env.VULKAN_SDK }}/lib
+        run: ./gradlew build -Pproject.version=${{ github.ref_name }}
+
+      - name: Publish
+        env:
+          GITHUB_USER: ${{ github.repository_owner }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          C_INCLUDE_PATH: ${{ env.VULKAN_SDK }}/include
+          LIBRARY_PATH: ${{ env.VULKAN_SDK }}/lib
+        run: >
+          ./gradlew publish
+          -Pproject.version=${{ github.ref_name }}
+          -Ppublish.url=https://maven.pkg.github.com/technoir42/volk-kotlin
+          -Ppublish.username=${{ secrets.DEPLOY_USER }}
+          -Ppublish.password=${{ secrets.DEPLOY_TOKEN }}

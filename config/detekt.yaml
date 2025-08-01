@@ -1,0 +1,9 @@
+formatting:
+  ArgumentListWrapping:
+    maxLineLength: 140
+  MaximumLineLength:
+    maxLineLength: 140
+
+style:
+  MaxLineLength:
+    active: false

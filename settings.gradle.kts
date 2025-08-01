@@ -1,0 +1,34 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+        mavenLocal()
+        maven("https://maven.pkg.github.com/technoir42/gradle-convention-plugins") {
+            credentials {
+                username = providers.gradleProperty("gpr.user")
+                    .orElse(providers.environmentVariable("GITHUB_USER")).get()
+                password = providers.gradleProperty("gpr.token")
+                    .orElse(providers.environmentVariable("GITHUB_TOKEN")).get()
+            }
+        }
+    }
+    plugins {
+        val conventionPluginsVersion = "v14"
+        id("io.github.technoir42.conventions.native-application") version conventionPluginsVersion
+        id("io.github.technoir42.conventions.native-library") version conventionPluginsVersion
+        id("io.github.technoir42.conventions.settings") version conventionPluginsVersion
+    }
+}
+
+plugins {
+    id("io.github.technoir42.conventions.native-application") apply false
+    id("io.github.technoir42.conventions.native-library") apply false
+    id("io.github.technoir42.conventions.settings")
+}
+
+globalSettings {
+    projectId = "volk-kotlin"
+}
+
+include(":volk")
+include(":sample")
