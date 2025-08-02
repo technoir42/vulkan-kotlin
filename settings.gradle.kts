@@ -11,7 +11,7 @@ pluginManagement {
         }
     }
     plugins {
-        val conventionPluginsVersion = "v14"
+        val conventionPluginsVersion = "v15"
         id("io.github.technoir42.conventions.native-application") version conventionPluginsVersion
         id("io.github.technoir42.conventions.native-library") version conventionPluginsVersion
         id("io.github.technoir42.conventions.settings") version conventionPluginsVersion
