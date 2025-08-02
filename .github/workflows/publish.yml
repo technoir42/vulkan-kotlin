@@ -49,6 +49,7 @@ jobs:
           LIBRARY_PATH: ${{ env.VULKAN_SDK }}/lib
         run: >
           ./gradlew publish
+          --no-configuration-cache
           -Pgpr.user=${{ github.repository_owner }}
           -Pgpr.token=${{ secrets.GITHUB_TOKEN }}
           -Pproject.version=${{ github.ref_name }}
