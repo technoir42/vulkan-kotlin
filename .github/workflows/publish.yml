@@ -33,22 +33,24 @@ jobs:
           version: 1.4.309.0
           cache: true
 
-      - name: Build
+      - name: Build with Gradle
         env:
-          GITHUB_USER: ${{ github.repository_owner }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           C_INCLUDE_PATH: ${{ env.VULKAN_SDK }}/include
           LIBRARY_PATH: ${{ env.VULKAN_SDK }}/lib
-        run: ./gradlew build -Pproject.version=${{ github.ref_name }}
+        run: >
+          ./gradlew build
+          -Pgpr.user=${{ github.repository_owner }}
+          -Pgpr.token=${{ secrets.GITHUB_TOKEN }}
+          -Pproject.version=${{ github.ref_name }}
 
       - name: Publish
         env:
-          GITHUB_USER: ${{ github.repository_owner }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           C_INCLUDE_PATH: ${{ env.VULKAN_SDK }}/include
           LIBRARY_PATH: ${{ env.VULKAN_SDK }}/lib
         run: >
           ./gradlew publish
+          -Pgpr.user=${{ github.repository_owner }}
+          -Pgpr.token=${{ secrets.GITHUB_TOKEN }}
           -Pproject.version=${{ github.ref_name }}
           -Ppublish.url=https://maven.pkg.github.com/technoir42/volk-kotlin
           -Ppublish.username=${{ secrets.DEPLOY_USER }}

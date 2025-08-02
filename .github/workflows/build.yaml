@@ -37,8 +37,9 @@ jobs:
 
       - name: Build with Gradle
         env:
-          GITHUB_USER: ${{ github.repository_owner }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           C_INCLUDE_PATH: ${{ env.VULKAN_SDK }}/include
           LIBRARY_PATH: ${{ env.VULKAN_SDK }}/lib
-        run: ./gradlew build
+        run: >
+          ./gradlew build
+          -Pgpr.user=${{ github.repository_owner }}
+          -Pgpr.token=${{ secrets.GITHUB_TOKEN }}

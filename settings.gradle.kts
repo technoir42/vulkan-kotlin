@@ -5,10 +5,8 @@ pluginManagement {
         mavenLocal()
         maven("https://maven.pkg.github.com/technoir42/gradle-convention-plugins") {
             credentials {
-                username = providers.gradleProperty("gpr.user")
-                    .orElse(providers.environmentVariable("GITHUB_USER")).get()
-                password = providers.gradleProperty("gpr.token")
-                    .orElse(providers.environmentVariable("GITHUB_TOKEN")).get()
+                username = providers.gradleProperty("gpr.user").orNull
+                password = providers.gradleProperty("gpr.token").orNull
             }
         }
     }
