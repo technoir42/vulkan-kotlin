@@ -3,7 +3,7 @@ headerFilter = volk/* vulkan/**
 
 compilerOpts.android = -DVK_USE_PLATFORM_ANDROID_KHR
 compilerOpts.ios = -DVK_USE_PLATFORM_IOS_MVK -DVK_USE_PLATFORM_METAL_EXT
-compilerOpts.macos = -DVK_USE_PLATFORM_MACOS_MVK -DVK_USE_PLATFORM_METAL_EXT
+compilerOpts.osx = -DVK_USE_PLATFORM_MACOS_MVK -DVK_USE_PLATFORM_METAL_EXT
 compilerOpts.mingw = -DVK_USE_PLATFORM_WIN32_KHR -DWIN32_LEAN_AND_MEAN
 compilerOpts.linux = -DVK_USE_PLATFORM_WAYLAND_KHR
 
