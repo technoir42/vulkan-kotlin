@@ -1,8 +1,8 @@
 plugins {
-    id("io.github.technoir42.conventions.native-library")
+    id("io.github.technoir42.conventions.kotlin-multiplatform-library")
 }
 
-nativeLibrary {
+kotlinMultiplatformLibrary {
     buildFeatures {
         cinterop = true
     }

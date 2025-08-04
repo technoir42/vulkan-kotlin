@@ -1,5 +1,5 @@
 plugins {
-    id("io.github.technoir42.conventions.native-application")
+    id("io.github.technoir42.conventions.kotlin-multiplatform-application")
 }
 
 kotlin {
