@@ -5,7 +5,6 @@ Kotlin/Native bindings for [Volk](https://github.com/zeux/volk), meta loader for
 
 # Supported targets
 
-* androidNativeArm64
 * iosArm64
 * iosSimulatorArm64
 * linuxX64

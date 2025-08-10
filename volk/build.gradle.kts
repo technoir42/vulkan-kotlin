@@ -3,7 +3,17 @@ plugins {
 }
 
 kotlinMultiplatformLibrary {
+    defaultTargets = false
+
     buildFeatures {
         cinterop = true
     }
+}
+
+kotlin {
+    iosArm64()
+    iosSimulatorArm64()
+    linuxX64()
+    macosArm64()
+    mingwX64()
 }
