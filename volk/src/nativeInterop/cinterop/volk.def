@@ -1,4 +1,4 @@
-headers = volk/volk.h vulkan/vulkan.h
+headers = volk/volk.h vulkan/vulkan.h vulkan/vk_enum_string_helper.h
 headerFilter = volk/* vulkan/**
 
 compilerOpts.android = -DVK_USE_PLATFORM_ANDROID_KHR
