@@ -1,6 +1,7 @@
 headers = volk/volk.h vulkan/vulkan.h vulkan/vk_enum_string_helper.h
 headerFilter = volk/* vulkan/**
 
+compilerOpts = -DVK_ENABLE_BETA_EXTENSIONS
 compilerOpts.android = -DVK_USE_PLATFORM_ANDROID_KHR
 compilerOpts.ios = -DVK_USE_PLATFORM_IOS_MVK -DVK_USE_PLATFORM_METAL_EXT
 compilerOpts.osx = -DVK_USE_PLATFORM_MACOS_MVK -DVK_USE_PLATFORM_METAL_EXT
