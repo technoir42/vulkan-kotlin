@@ -28,9 +28,9 @@ jobs:
             ${{ runner.os }}-konan-
 
       - name: Install Vulkan SDK
-        uses: technoir42/install-vulkan-sdk@v1.2.1
+        uses: technoir42/install-vulkan-sdk@v1.2.2
         with:
-          version: 1.4.309.0
+          version: 1.4.321.0
           cache: true
 
       - name: Build with Gradle
