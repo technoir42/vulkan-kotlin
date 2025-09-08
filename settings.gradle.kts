@@ -11,7 +11,7 @@ pluginManagement {
         }
     }
     plugins {
-        val conventionPluginsVersion = "v22"
+        val conventionPluginsVersion = "v24"
         id("io.github.technoir42.conventions.kotlin-multiplatform-application") version conventionPluginsVersion
         id("io.github.technoir42.conventions.kotlin-multiplatform-library") version conventionPluginsVersion
         id("io.github.technoir42.conventions.settings") version conventionPluginsVersion
