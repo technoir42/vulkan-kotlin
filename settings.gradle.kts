@@ -25,8 +25,8 @@ plugins {
 }
 
 globalSettings {
-    projectId = "volk-kotlin"
+    projectId = "vulkan-kotlin"
 }
 
-include(":volk")
+include(":volk-kotlin")
 include(":sample")

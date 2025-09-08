@@ -53,6 +53,6 @@ jobs:
           -Pgpr.user=${{ github.repository_owner }}
           -Pgpr.token=${{ secrets.GITHUB_TOKEN }}
           -Pproject.version=${{ github.ref_name }}
-          -Ppublish.url=https://maven.pkg.github.com/technoir42/volk-kotlin
+          -Ppublish.url=https://maven.pkg.github.com/technoir42/vulkan-kotlin
           -Ppublish.username=${{ secrets.DEPLOY_USER }}
           -Ppublish.password=${{ secrets.DEPLOY_TOKEN }}

@@ -1,7 +1,7 @@
-Volk Kotlin
-===========
+Vulkan Kotlin
+=============
 
-Kotlin/Native bindings for [Volk](https://github.com/zeux/volk), meta loader for Vulkan API.
+Kotlin/Native bindings for Vulkan API.
 
 # Supported targets
 
@@ -12,7 +12,9 @@ Kotlin/Native bindings for [Volk](https://github.com/zeux/volk), meta loader for
 * macosArm64
 * mingwX64
 
-# Usage
+## Usage
+
+### Add vulkan-kotlin repository
 
 1. Add your personal GitHub credentials to `~/.gradle/gradle.properties`:
     ```properties
@@ -24,8 +26,8 @@ Kotlin/Native bindings for [Volk](https://github.com/zeux/volk), meta loader for
     ```kotlin
     dependencyResolutionManagement {
         repositories {
-            maven("https://maven.pkg.github.com/technoir42/volk-kotlin") {
-                name = "volk-kotlin"
+            maven("https://maven.pkg.github.com/technoir42/vulkan-kotlin") {
+                name = "vulkan-kotlin"
                 credentials {
                     username = providers.gradleProperty("gpr.user").get()
                     password = providers.gradleProperty("gpr.token").get()
@@ -35,20 +37,22 @@ Kotlin/Native bindings for [Volk](https://github.com/zeux/volk), meta loader for
     }
     ```
 
-3. Add Volk Kotlin dependency:
-   ```kotlin
-   kotlin {
-       sourceSets {
-           val commonMain by getting {
-               dependencies {
-                   implementation("io.github.technoir42:volk:<volk version>")
-               }
-           }
+### Using Vulkan API via Volk
+
+Add Volk Kotlin dependency to your project:
+
+```kotlin
+kotlin {
+   sourceSets.commonMain {
+       dependencies {
+           implementation("io.github.technoir42:volk-kotlin:<version>")
        }
    }
-   ```
+}
+```
 
-4. Use Volk bindings from Kotlin:
+You can now initialize Volk and use Vulkan API from Kotlin:
+
    ```kotlin
    import volk.volkInitialize
    

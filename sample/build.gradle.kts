@@ -14,11 +14,9 @@ kotlin {
     macosArm64()
     mingwX64()
 
-    sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(project(":volk"))
-            }
+    sourceSets.commonMain {
+        dependencies {
+            implementation(project(":volk-kotlin"))
         }
     }
 }

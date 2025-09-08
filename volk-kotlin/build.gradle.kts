@@ -3,6 +3,7 @@ plugins {
 }
 
 kotlinMultiplatformLibrary {
+    packageName = "volk"
     defaultTargets = false
 
     buildFeatures {
