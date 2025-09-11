@@ -1,8 +1,25 @@
+complexity:
+  TooManyFunctions:
+    active: false
+
 formatting:
   ArgumentListWrapping:
     maxLineLength: 140
   MaximumLineLength:
     maxLineLength: 140
+  # Fails on context parameters
+  ParameterListWrapping:
+    active: false
+  # Fails on context parameters
+  SpacingAroundColon:
+    active: false
+  # Fails on context parameters
+  NoUnusedImports:
+    active: false
+  # Fails on context parameters
+  Wrapping:
+    active: false
+    maxLineLength: 160
 
 style:
   MaxLineLength:

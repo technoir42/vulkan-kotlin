@@ -28,5 +28,6 @@ globalSettings {
     projectId = "vulkan-kotlin"
 }
 
-include(":volk-kotlin")
 include(":sample")
+include(":volk-kotlin")
+include(":vulkan-kotlin")

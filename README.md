@@ -59,6 +59,20 @@ You can now initialize Volk and use Vulkan API from Kotlin:
    val result = volkInitialize()
    ```
 
+### Using Vulkan API wrapper
+
+Add Vulkan Kotlin dependency to your project:
+
+```kotlin
+kotlin {
+   sourceSets.commonMain {
+       dependencies {
+           implementation("io.github.technoir42:vulkan-kotlin:<version>")
+       }
+   }
+}
+```
+
 # License
 
 This library is available to anybody free of charge, under the terms of MIT License.
