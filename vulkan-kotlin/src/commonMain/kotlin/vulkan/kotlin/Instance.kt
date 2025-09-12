@@ -30,12 +30,12 @@ class Instance(val handle: VkInstance) : AutoCloseable {
      */
     context(memScope: MemScope)
     fun createDebugUtilsMessenger(createInfo: VkDebugUtilsMessengerCreateInfoEXT.() -> Unit): DebugUtilsMessenger {
-        val createInfo = memScope.alloc<VkDebugUtilsMessengerCreateInfoEXT> {
+        val debugUtilsMessengerCreateInfo = memScope.alloc<VkDebugUtilsMessengerCreateInfoEXT> {
             sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT
             createInfo()
         }
         val messengerVar = memScope.alloc<VkDebugUtilsMessengerEXTVar>()
-        vkCreateDebugUtilsMessengerEXT!!(handle, createInfo.ptr, null, messengerVar.ptr)
+        vkCreateDebugUtilsMessengerEXT!!(handle, debugUtilsMessengerCreateInfo.ptr, null, messengerVar.ptr)
             .checkResult("Failed to create a debug utils messenger")
         return DebugUtilsMessenger(handle, messengerVar.value!!)
     }

@@ -17,12 +17,12 @@ import volk.vkCreateWaylandSurfaceKHR
  */
 context(memScope: MemScope)
 fun Instance.createWaylandSurface(createInfo: VkWaylandSurfaceCreateInfoKHR.() -> Unit): Surface {
-    val createInfo = memScope.alloc<VkWaylandSurfaceCreateInfoKHR> {
+    val surfaceCreateInfo = memScope.alloc<VkWaylandSurfaceCreateInfoKHR> {
         sType = VK_STRUCTURE_TYPE_WAYLAND_SURFACE_CREATE_INFO_KHR
         createInfo()
     }
     val surfaceVar = memScope.alloc<VkSurfaceKHRVar>()
-    vkCreateWaylandSurfaceKHR!!(handle, createInfo.ptr, null, surfaceVar.ptr)
+    vkCreateWaylandSurfaceKHR!!(handle, surfaceCreateInfo.ptr, null, surfaceVar.ptr)
         .checkResult("Failed to create a Wayland surface")
     return Surface(handle, surfaceVar.value!!)
 }

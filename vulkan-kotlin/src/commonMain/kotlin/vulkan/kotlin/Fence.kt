@@ -19,17 +19,12 @@ class Fence(
 ) : AutoCloseable {
 
     /**
-     * Wait for the fence to become signaled.
+     * Destroy the fence.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkWaitForFences.html">vkWaitForFences</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyFence.html">vkDestroyFence</a>
      */
-    context(memScope: MemScope)
-    fun await(timeout: ULong = ULong.MAX_VALUE) {
-        val fenceVar = memScope.alloc<VkFenceVar> {
-            value = handle
-        }
-        vkWaitForFences!!(device, 1u, fenceVar.ptr, VK_TRUE, timeout)
-            .checkResult("Failed to wait for fence")
+    override fun close() {
+        vkDestroyFence!!(device, handle, null)
     }
 
     /**
@@ -47,11 +42,16 @@ class Fence(
     }
 
     /**
-     * Destroy the fence.
+     * Wait for the fence to become signaled.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyFence.html">vkDestroyFence</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkWaitForFences.html">vkWaitForFences</a>
      */
-    override fun close() {
-        vkDestroyFence!!(device, handle, null)
+    context(memScope: MemScope)
+    fun wait(timeout: ULong = ULong.MAX_VALUE) {
+        val fenceVar = memScope.alloc<VkFenceVar> {
+            value = handle
+        }
+        vkWaitForFences!!(device, 1u, fenceVar.ptr, VK_TRUE, timeout)
+            .checkResult("Failed to wait for fence")
     }
 }

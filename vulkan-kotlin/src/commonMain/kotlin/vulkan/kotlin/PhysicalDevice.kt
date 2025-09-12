@@ -171,15 +171,15 @@ class PhysicalDevice(val handle: VkPhysicalDevice) {
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceImageFormatProperties2.html">vkGetPhysicalDeviceImageFormatProperties2</a>
      */
     context(memScope: MemScope)
-    fun getImageFormatProperties(info: VkPhysicalDeviceImageFormatInfo2.() -> Unit): VkImageFormatProperties2 {
-        val infoNative = memScope.alloc<VkPhysicalDeviceImageFormatInfo2> {
+    fun getImageFormatProperties(formatInfo: VkPhysicalDeviceImageFormatInfo2.() -> Unit): VkImageFormatProperties2 {
+        val imageFormatInfo = memScope.alloc<VkPhysicalDeviceImageFormatInfo2> {
             sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2
-            info()
+            formatInfo()
         }
         val properties = memScope.alloc<VkImageFormatProperties2> {
             sType = VK_STRUCTURE_TYPE_IMAGE_FORMAT_PROPERTIES_2
         }
-        vkGetPhysicalDeviceImageFormatProperties2!!(handle, infoNative.ptr, properties.ptr)
+        vkGetPhysicalDeviceImageFormatProperties2!!(handle, imageFormatInfo.ptr, properties.ptr)
             .checkResult("Failed to get image format properties")
         return properties
     }

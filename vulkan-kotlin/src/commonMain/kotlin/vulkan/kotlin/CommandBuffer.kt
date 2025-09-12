@@ -44,9 +44,12 @@ import volk.vkCmdBindPipeline
 import volk.vkCmdBindVertexBuffers2
 import volk.vkCmdDraw
 import volk.vkCmdDrawIndexed
+import volk.vkCmdDrawIndexedIndirect
+import volk.vkCmdDrawIndirect
 import volk.vkCmdEndRendering
 import volk.vkCmdPipelineBarrier2
 import volk.vkCmdPushConstants
+import volk.vkCmdSetBlendConstants
 import volk.vkCmdSetCullMode
 import volk.vkCmdSetDepthBias
 import volk.vkCmdSetDepthBiasEnable
@@ -55,12 +58,16 @@ import volk.vkCmdSetDepthCompareOp
 import volk.vkCmdSetDepthTestEnable
 import volk.vkCmdSetDepthWriteEnable
 import volk.vkCmdSetFrontFace
+import volk.vkCmdSetLineWidth
 import volk.vkCmdSetPrimitiveRestartEnable
 import volk.vkCmdSetPrimitiveTopology
 import volk.vkCmdSetRasterizerDiscardEnable
 import volk.vkCmdSetScissor
+import volk.vkCmdSetStencilCompareMask
 import volk.vkCmdSetStencilOp
+import volk.vkCmdSetStencilReference
 import volk.vkCmdSetStencilTestEnable
+import volk.vkCmdSetStencilWriteMask
 import volk.vkCmdSetViewport
 import volk.vkEndCommandBuffer
 import volk.vkResetCommandBuffer
@@ -201,6 +208,24 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     }
 
     /**
+     * Draw primitives indirectly.
+     *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawIndirect.html">vkCmdDrawIndirect</a>
+     */
+    fun drawIndirect(buffer: Buffer, offset: ULong, drawCount: UInt, stride: UInt) {
+        vkCmdDrawIndirect!!(handle, buffer.handle, offset, drawCount, stride)
+    }
+
+    /**
+     * Draw primitives with indexed vertices indirectly.
+     *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawIndexedIndirect.html">vkCmdDrawIndexedIndirect</a>
+     */
+    fun drawIndexedIndirect(buffer: Buffer, offset: ULong, drawCount: UInt, stride: UInt) {
+        vkCmdDrawIndexedIndirect!!(handle, buffer.handle, offset, drawCount, stride)
+    }
+
+    /**
      * Insert a pipeline barrier for image memory.
      *
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdPipelineBarrier2.html">vkCmdPipelineBarrier2</a>
@@ -262,6 +287,18 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     fun reset(flags: UInt = 0u) {
         vkResetCommandBuffer!!(handle, flags)
             .checkResult("Failed to reset command buffer")
+    }
+
+    /**
+     * Set blend constants dynamically for the command buffer.
+     *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetBlendConstants.html">vkCmdSetBlendConstants</a>
+     */
+    fun setBlendConstants(r: Float, g: Float, b: Float, a: Float) {
+        val blendConstants = floatArrayOf(r, g, b, a)
+        blendConstants.usePinned {
+            vkCmdSetBlendConstants!!(handle, it.addressOf(0))
+        }
     }
 
     /**
@@ -337,6 +374,15 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     }
 
     /**
+     * Set line width dynamically for the command buffer.
+     *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetLineWidth.html">vkCmdSetLineWidth</a>
+     */
+    fun setLineWidth(lineWidth: Float) {
+        vkCmdSetLineWidth!!(handle, lineWidth)
+    }
+
+    /**
      * Set primitive assembly restart state dynamically for the command buffer.
      *
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetPrimitiveRestartEnable.html">vkCmdSetPrimitiveRestartEnable</a>
@@ -380,6 +426,15 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     }
 
     /**
+     * Set stencil test compare mask dynamically for the command buffer.
+     *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetStencilCompareMask.html">vkCmdSetStencilCompareMask</a>
+     */
+    fun setStencilCompareMask(faceMask: VkStencilFaceFlags, compareMask: UInt) {
+        vkCmdSetStencilCompareMask!!(handle, faceMask, compareMask)
+    }
+
+    /**
      * Set stencil test actions dynamically for the command buffer.
      *
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetStencilOp.html">vkCmdSetStencilOp</a>
@@ -395,12 +450,30 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     }
 
     /**
+     * Set stencil reference value dynamically for the command buffer.
+     *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetStencilReference.html">vkCmdSetStencilReference</a>
+     */
+    fun setStencilReference(faceMask: VkStencilFaceFlags, reference: UInt) {
+        vkCmdSetStencilReference!!(handle, faceMask, reference)
+    }
+
+    /**
      * Enable or disable stencil test dynamically for the command buffer.
      *
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetStencilTestEnable.html">vkCmdSetStencilTestEnable</a>
      */
     fun setStencilTestEnable(enable: Boolean) {
         vkCmdSetStencilTestEnable!!(handle, enable.toVkBool32())
+    }
+
+    /**
+     * Set stencil write mask dynamically for the command buffer.
+     *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetStencilWriteMask.html">vkCmdSetStencilWriteMask</a>
+     */
+    fun setStencilWriteMask(faceMask: VkStencilFaceFlags, writeMask: UInt) {
+        vkCmdSetStencilWriteMask!!(handle, faceMask, writeMask)
     }
 
     /**

@@ -30,7 +30,7 @@ class DescriptorPool(
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkAllocateDescriptorSets.html">vkAllocateDescriptorSets</a>
      */
     context(memScope: MemScope)
-    fun allocate(setLayouts: List<DescriptorSetLayout>): List<VkDescriptorSet> {
+    fun allocateDescriptorSets(setLayouts: List<DescriptorSetLayout>): List<DescriptorSet> {
         val layoutsNative = memScope.allocArrayOf(setLayouts.map { it.handle })
         val allocInfo = memScope.alloc<VkDescriptorSetAllocateInfo> {
             sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO
@@ -42,7 +42,7 @@ class DescriptorPool(
         vkAllocateDescriptorSets!!(device, allocInfo.ptr, sets)
             .checkResult("Failed to allocate descriptor sets")
 
-        return (0 until setLayouts.size).map { sets[it]!! }
+        return (0 until setLayouts.size).map { DescriptorSet(sets[it]!!) }
     }
 
     /**

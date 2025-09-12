@@ -17,12 +17,12 @@ import volk.vkCreateWin32SurfaceKHR
  */
 context(memScope: MemScope)
 fun Instance.createWin32Surface(createInfo: VkWin32SurfaceCreateInfoKHR.() -> Unit): Surface {
-    val createInfo = memScope.alloc<VkWin32SurfaceCreateInfoKHR> {
+    val surfaceCreateInfo = memScope.alloc<VkWin32SurfaceCreateInfoKHR> {
         sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR
         createInfo()
     }
     val surfaceVar = memScope.alloc<VkSurfaceKHRVar>()
-    vkCreateWin32SurfaceKHR!!(handle, createInfo.ptr, null, surfaceVar.ptr)
+    vkCreateWin32SurfaceKHR!!(handle, surfaceCreateInfo.ptr, null, surfaceVar.ptr)
         .checkResult("Failed to create a Win32 surface")
     return Surface(handle, surfaceVar.value!!)
 }

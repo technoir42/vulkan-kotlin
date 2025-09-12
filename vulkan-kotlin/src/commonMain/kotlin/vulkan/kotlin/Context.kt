@@ -51,13 +51,13 @@ class Context : AutoCloseable {
             sType = VK_STRUCTURE_TYPE_APPLICATION_INFO
             applicationInfo()
         }
-        val createInfo = memScope.alloc<VkInstanceCreateInfo> {
+        val instanceCreateInfo = memScope.alloc<VkInstanceCreateInfo> {
             sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO
             pApplicationInfo = applicationInfo.ptr
             instanceInfo()
         }
         val instanceVar = memScope.alloc<VkInstanceVar>()
-        vkCreateInstance!!(createInfo.ptr, null, instanceVar.ptr)
+        vkCreateInstance!!(instanceCreateInfo.ptr, null, instanceVar.ptr)
             .checkResult("Failed to create a Vulkan instance")
         return Instance(instanceVar.value!!)
     }

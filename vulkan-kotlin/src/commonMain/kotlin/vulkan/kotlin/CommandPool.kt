@@ -16,6 +16,8 @@ import volk.VkDevice
 import volk.vkAllocateCommandBuffers
 import volk.vkDestroyCommandPool
 import volk.vkFreeCommandBuffers
+import volk.vkResetCommandPool
+import volk.vkTrimCommandPool
 
 class CommandPool(
     private val device: VkDevice,
@@ -52,6 +54,25 @@ class CommandPool(
             value = commandBuffers[it].handle
         }
         vkFreeCommandBuffers!!(device, handle, commandBuffers.size.toUInt(), commandBufferArray)
+    }
+
+    /**
+     * Reset the command pool, releasing resources from all command buffers allocated from it.
+     *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkResetCommandPool.html">vkResetCommandPool</a>
+     */
+    fun reset(flags: UInt = 0u) {
+        vkResetCommandPool!!(device, handle, flags)
+            .checkResult("Failed to reset command pool")
+    }
+
+    /**
+     * Trim internal memory allocations owned by the command pool.
+     *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkTrimCommandPool.html">vkTrimCommandPool</a>
+     */
+    fun trim(flags: UInt = 0u) {
+        vkTrimCommandPool!!(device, handle, flags)
     }
 
     /**

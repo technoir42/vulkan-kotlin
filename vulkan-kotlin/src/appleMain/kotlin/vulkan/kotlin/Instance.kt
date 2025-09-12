@@ -17,12 +17,12 @@ import volk.vkCreateMetalSurfaceEXT
  */
 context(memScope: MemScope)
 fun Instance.createMetalSurface(createInfo: VkMetalSurfaceCreateInfoEXT.() -> Unit): Surface {
-    val createInfo = memScope.alloc<VkMetalSurfaceCreateInfoEXT> {
+    val surfaceCreateInfo = memScope.alloc<VkMetalSurfaceCreateInfoEXT> {
         sType = VK_STRUCTURE_TYPE_METAL_SURFACE_CREATE_INFO_EXT
         createInfo()
     }
     val surfaceVar = memScope.alloc<VkSurfaceKHRVar>()
-    vkCreateMetalSurfaceEXT!!(handle, createInfo.ptr, null, surfaceVar.ptr)
+    vkCreateMetalSurfaceEXT!!(handle, surfaceCreateInfo.ptr, null, surfaceVar.ptr)
         .checkResult("Failed to create a Metal surface")
     return Surface(handle, surfaceVar.value!!)
 }
