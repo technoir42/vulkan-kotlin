@@ -10,4 +10,12 @@ class VolkTest {
 
         assertEquals(VK_SUCCESS, result)
     }
+
+    @Test
+    fun `instance version`() {
+        val instanceVersion = volkGetInstanceVersion()
+
+        println("Instance version: $instanceVersion")
+        println("${VK_VERSION_MAJOR(instanceVersion)}.${VK_VERSION_MINOR(instanceVersion)}.${VK_VERSION_PATCH(instanceVersion)}")
+    }
 }
