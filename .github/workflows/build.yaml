@@ -38,10 +38,23 @@ jobs:
           version: 1.4.321.0
           cache: true
 
+      - name: Set environment variables
+        run: |
+          echo "C_INCLUDE_PATH=$VULKAN_SDK/include" >> $GITHUB_ENV
+          echo "LIBRARY_PATH=$VULKAN_SDK/lib" >> $GITHUB_ENV
+          echo "DYLD_LIBRARY_PATH=$VULKAN_SDK/macOS/lib:$DYLD_LIBRARY_PATH" >> $GITHUB_ENV
+          echo "VK_ICD_FILENAMES=$VULKAN_SDK/macOS/share/vulkan/icd.d/MoltenVK_icd.json" >> $GITHUB_ENV
+
+          # Layers (validation/debug)
+          #echo "VK_LAYER_PATH=$VULKAN_SDK/macOS/share/vulkan/explicit_layer.d" >> $GITHUB_ENV
+          # Example: enable validation (optional)
+          #echo "VK_INSTANCE_LAYERS=VK_LAYER_KHRONOS_validation" >> $GITHUB_ENV
+
+
+          # Helpful for debugging loader issues:
+          #echo "VK_LOADER_DEBUG=all" >> $GITHUB_ENV
+
       - name: Build with Gradle
-        env:
-          C_INCLUDE_PATH: ${{ env.VULKAN_SDK }}/include
-          LIBRARY_PATH: ${{ env.VULKAN_SDK }}/lib
         run: >
           ./gradlew build
           -Pgpr.user=${{ github.repository_owner }}
