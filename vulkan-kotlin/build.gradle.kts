@@ -23,5 +23,8 @@ kotlin {
             api(project(":volk-kotlin"))
             api(libs.kotlinx.io.core)
         }
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+        }
     }
 }

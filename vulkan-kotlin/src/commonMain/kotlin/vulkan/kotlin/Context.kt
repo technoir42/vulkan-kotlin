@@ -46,7 +46,7 @@ class Context : AutoCloseable {
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateInstance.html">vkCreateInstance</a>
      */
     context(memScope: MemScope)
-    fun createInstance(applicationInfo: VkApplicationInfo.() -> Unit, instanceInfo: VkInstanceCreateInfo.() -> Unit): Instance {
+    fun createInstance(applicationInfo: VkApplicationInfo.() -> Unit = {}, instanceInfo: VkInstanceCreateInfo.() -> Unit = {}): Instance {
         val applicationInfo = memScope.alloc<VkApplicationInfo> {
             sType = VK_STRUCTURE_TYPE_APPLICATION_INFO
             applicationInfo()
