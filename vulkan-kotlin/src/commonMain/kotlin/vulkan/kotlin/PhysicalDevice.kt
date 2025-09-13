@@ -24,7 +24,6 @@ import volk.VkExtensionProperties
 import volk.VkFormat
 import volk.VkFormatProperties2
 import volk.VkImageFormatProperties2
-import volk.VkLayerProperties
 import volk.VkPhysicalDevice
 import volk.VkPhysicalDeviceFeatures
 import volk.VkPhysicalDeviceFeatures2
@@ -41,7 +40,6 @@ import volk.VkSurfaceCapabilitiesKHR
 import volk.VkSurfaceFormatKHR
 import volk.vkCreateDevice
 import volk.vkEnumerateDeviceExtensionProperties
-import volk.vkEnumerateDeviceLayerProperties
 import volk.vkGetPhysicalDeviceFeatures2
 import volk.vkGetPhysicalDeviceFormatProperties2
 import volk.vkGetPhysicalDeviceImageFormatProperties2
@@ -109,25 +107,6 @@ class PhysicalDevice(val handle: VkPhysicalDevice) {
         vkEnumerateDeviceExtensionProperties!!(handle, null, countVar.ptr, extensionProperties)
 
         return (0 until count).asSequence().map { extensionProperties[it] }
-    }
-
-    /**
-     * Enumerate the layers supported by the device.
-     *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkEnumerateDeviceLayerProperties.html">vkEnumerateDeviceLayerProperties</a>
-     */
-    context(memScope: MemScope)
-    fun enumerateDeviceLayerProperties(): Sequence<VkLayerProperties> {
-        val countVar = memScope.alloc<UIntVar>()
-        vkEnumerateDeviceLayerProperties!!(handle, countVar.ptr, null)
-
-        val count = countVar.value.toInt()
-        if (count == 0) return emptySequence()
-
-        val layerProperties = memScope.allocArray<VkLayerProperties>(count)
-        vkEnumerateDeviceLayerProperties!!(handle, countVar.ptr, layerProperties)
-
-        return (0 until count).asSequence().map { layerProperties[it] }
     }
 
     /**

@@ -53,9 +53,6 @@ class Sample : AutoCloseable {
         val deviceExtensions = physicalDevice.enumerateDeviceExtensionProperties()
         println("Supported device extensions: ${deviceExtensions.joinToString(", ") { it.extensionName.toKString() }}")
 
-        val deviceLayers = physicalDevice.enumerateDeviceLayerProperties()
-        println("Supported device layers: ${deviceLayers.joinToString(", ") { it.layerName.toKString() }}")
-
         device = physicalDevice.createDevice()
         println("Created logical device for $deviceName")
     }
