@@ -10,11 +10,13 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.usePinned
 import kotlinx.cinterop.value
 import volk.VK_PIPELINE_BIND_POINT_GRAPHICS
+import volk.VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER_2
 import volk.VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO
 import volk.VK_STRUCTURE_TYPE_DEPENDENCY_INFO
 import volk.VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2
 import volk.VK_STRUCTURE_TYPE_RENDERING_INFO
 import volk.VK_WHOLE_SIZE
+import volk.VkBufferMemoryBarrier2
 import volk.VkBufferVar
 import volk.VkCommandBuffer
 import volk.VkCommandBufferBeginInfo
@@ -168,6 +170,23 @@ class CommandBuffer(val handle: VkCommandBuffer) {
             value = vertexBuffers[it].handle
         }
         vkCmdBindVertexBuffers2!!(handle, 0u, vertexBuffers.size.toUInt(), buffers, null, null, null)
+    }
+
+    /**
+     * Insert a pipeline barrier for buffer memory.
+     *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdPipelineBarrier2.html">vkCmdPipelineBarrier2</a>
+     */
+    context(memScope: MemScope)
+    fun bufferMemoryBarrier(barrierInfo: VkBufferMemoryBarrier2.() -> Unit) {
+        val bufferMemoryBarrier = memScope.alloc<VkBufferMemoryBarrier2> {
+            sType = VK_STRUCTURE_TYPE_BUFFER_MEMORY_BARRIER_2
+            barrierInfo()
+        }
+        pipelineBarrier {
+            bufferMemoryBarrierCount = 1u
+            pBufferMemoryBarriers = bufferMemoryBarrier.ptr
+        }
     }
 
     /**
