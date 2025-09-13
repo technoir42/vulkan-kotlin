@@ -8,5 +8,7 @@ compilerOpts.osx = -DVK_USE_PLATFORM_MACOS_MVK -DVK_USE_PLATFORM_METAL_EXT
 compilerOpts.mingw = -DVK_USE_PLATFORM_WIN32_KHR -DWIN32_LEAN_AND_MEAN
 compilerOpts.linux = -DVK_USE_PLATFORM_WAYLAND_KHR
 
+linkerOpts.ios = -framework MoltenVK
+
 ---
 #include <volk/volk.c>

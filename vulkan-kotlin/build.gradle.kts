@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
     id("io.github.technoir42.conventions.kotlin-multiplatform-library")
 }
@@ -23,5 +25,15 @@ kotlin {
             api(project(":volk-kotlin"))
             api(libs.kotlinx.io.core)
         }
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+        }
+    }
+}
+
+tasks.withType<AbstractTestTask>().configureEach {
+    testLogging {
+        showStandardStreams = true
+        events(TestLogEvent.PASSED, TestLogEvent.FAILED)
     }
 }
