@@ -1,4 +1,3 @@
-
 package vulkan.kotlin
 
 import kotlinx.cinterop.MemScope
@@ -31,6 +30,7 @@ import volk.VkPhysicalDeviceFeatures
 import volk.VkPhysicalDeviceFeatures2
 import volk.VkPhysicalDeviceImageFormatInfo2
 import volk.VkPhysicalDeviceMemoryProperties
+import volk.VkPhysicalDeviceProperties
 import volk.VkPhysicalDeviceProperties2
 import volk.VkPhysicalDeviceVulkan13Features
 import volk.VkPhysicalDeviceVulkan14Features
@@ -46,6 +46,7 @@ import volk.vkGetPhysicalDeviceFeatures2
 import volk.vkGetPhysicalDeviceFormatProperties2
 import volk.vkGetPhysicalDeviceImageFormatProperties2
 import volk.vkGetPhysicalDeviceMemoryProperties
+import volk.vkGetPhysicalDeviceProperties
 import volk.vkGetPhysicalDeviceProperties2
 import volk.vkGetPhysicalDeviceQueueFamilyProperties
 import volk.vkGetPhysicalDeviceSurfaceCapabilitiesKHR
@@ -61,7 +62,7 @@ class PhysicalDevice(val handle: VkPhysicalDevice) {
      */
     context(memScope: MemScope)
     fun createDevice(
-        createInfo: VkDeviceCreateInfo.() -> Unit,
+        createInfo: VkDeviceCreateInfo.() -> Unit = {},
         features: VkPhysicalDeviceFeatures.() -> Unit = {},
         features13: VkPhysicalDeviceVulkan13Features.() -> Unit = {},
         features14: VkPhysicalDeviceVulkan14Features.() -> Unit = {}
@@ -199,10 +200,22 @@ class PhysicalDevice(val handle: VkPhysicalDevice) {
     /**
      * Retrieve properties of the physical device.
      *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceProperties.html">vkGetPhysicalDeviceProperties</a>
+     */
+    context(memScope: MemScope)
+    fun getProperties(): VkPhysicalDeviceProperties {
+        val properties = memScope.alloc<VkPhysicalDeviceProperties>()
+        vkGetPhysicalDeviceProperties!!(handle, properties.ptr)
+        return properties
+    }
+
+    /**
+     * Retrieve properties of the physical device.
+     *
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceProperties2.html">vkGetPhysicalDeviceProperties2</a>
      */
     context(memScope: MemScope)
-    fun getProperties(): VkPhysicalDeviceProperties2 {
+    fun getProperties2(): VkPhysicalDeviceProperties2 {
         val properties = memScope.alloc<VkPhysicalDeviceProperties2> {
             sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2
         }

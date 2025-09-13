@@ -16,7 +16,7 @@ kotlin {
 
     sourceSets.commonMain {
         dependencies {
-            implementation(project(":volk-kotlin"))
+            implementation(project(":vulkan-kotlin"))
         }
     }
 }
