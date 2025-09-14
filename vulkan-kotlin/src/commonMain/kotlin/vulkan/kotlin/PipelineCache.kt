@@ -1,12 +1,10 @@
 package vulkan.kotlin
 
 import kotlinx.cinterop.MemScope
-import kotlinx.cinterop.allocArray
+import kotlinx.cinterop.allocArrayOf
 import kotlinx.cinterop.invoke
-import kotlinx.cinterop.value
 import volk.VkDevice
 import volk.VkPipelineCache
-import volk.VkPipelineCacheVar
 import volk.vkDestroyPipelineCache
 import volk.vkMergePipelineCaches
 
@@ -22,9 +20,7 @@ class PipelineCache(
      */
     context(memScope: MemScope)
     fun merge(srcCaches: List<PipelineCache>) {
-        val srcCacheHandles = memScope.allocArray<VkPipelineCacheVar>(srcCaches.size) {
-            value = srcCaches[it].handle
-        }
+        val srcCacheHandles = memScope.allocArrayOf(srcCaches.map { it.handle })
         vkMergePipelineCaches!!(device, handle, srcCaches.size.toUInt(), srcCacheHandles)
             .checkResult("Failed to merge pipeline caches")
     }

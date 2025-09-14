@@ -3,10 +3,10 @@ package vulkan.kotlin
 import kotlinx.cinterop.MemScope
 import kotlinx.cinterop.alloc
 import kotlinx.cinterop.allocArray
+import kotlinx.cinterop.allocArrayOf
 import kotlinx.cinterop.get
 import kotlinx.cinterop.invoke
 import kotlinx.cinterop.ptr
-import kotlinx.cinterop.value
 import volk.VK_COMMAND_BUFFER_LEVEL_PRIMARY
 import volk.VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO
 import volk.VkCommandBufferAllocateInfo
@@ -50,10 +50,8 @@ class CommandPool(
      */
     context(memScope: MemScope)
     fun freeCommandBuffers(commandBuffers: List<CommandBuffer>) {
-        val commandBufferArray = memScope.allocArray<VkCommandBufferVar>(commandBuffers.size) {
-            value = commandBuffers[it].handle
-        }
-        vkFreeCommandBuffers!!(device, handle, commandBuffers.size.toUInt(), commandBufferArray)
+        val commandBufferHandles = memScope.allocArrayOf(commandBuffers.map { it.handle })
+        vkFreeCommandBuffers!!(device, handle, commandBuffers.size.toUInt(), commandBufferHandles)
     }
 
     /**

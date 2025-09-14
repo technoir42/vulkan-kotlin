@@ -5,6 +5,7 @@ import kotlinx.cinterop.UIntVar
 import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.alloc
 import kotlinx.cinterop.allocArray
+import kotlinx.cinterop.allocArrayOf
 import kotlinx.cinterop.invoke
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.usePinned
@@ -17,14 +18,11 @@ import volk.VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2
 import volk.VK_STRUCTURE_TYPE_RENDERING_INFO
 import volk.VK_WHOLE_SIZE
 import volk.VkBufferMemoryBarrier2
-import volk.VkBufferVar
 import volk.VkCommandBuffer
 import volk.VkCommandBufferBeginInfo
 import volk.VkCompareOp
 import volk.VkCullModeFlags
 import volk.VkDependencyInfo
-import volk.VkDescriptorSet
-import volk.VkDescriptorSetVar
 import volk.VkExtent2D
 import volk.VkFrontFace
 import volk.VkImageMemoryBarrier2
@@ -115,12 +113,10 @@ class CommandBuffer(val handle: VkCommandBuffer) {
         pipelineBindPoint: VkPipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS,
         layout: PipelineLayout,
         firstSet: UInt,
-        descriptorSets: List<VkDescriptorSet>,
+        descriptorSets: List<DescriptorSet>,
         dynamicOffsets: List<UInt> = emptyList()
     ) {
-        val descriptorSetArray = memScope.allocArray<VkDescriptorSetVar>(descriptorSets.size) { index ->
-            value = descriptorSets[index]
-        }
+        val descriptorSetHandles = memScope.allocArrayOf(descriptorSets.map { it.handle })
         val dynamicOffsetArray = if (dynamicOffsets.isNotEmpty()) {
             memScope.allocArray<UIntVar>(dynamicOffsets.size) { index ->
                 value = dynamicOffsets[index]
@@ -135,7 +131,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
             layout.handle,
             firstSet,
             descriptorSets.size.toUInt(),
-            descriptorSetArray,
+            descriptorSetHandles,
             dynamicOffsets.size.toUInt(),
             dynamicOffsetArray
         )
@@ -166,10 +162,8 @@ class CommandBuffer(val handle: VkCommandBuffer) {
      */
     context(memScope: MemScope)
     fun bindVertexBuffers(vertexBuffers: List<Buffer>) {
-        val buffers = memScope.allocArray<VkBufferVar>(vertexBuffers.size) {
-            value = vertexBuffers[it].handle
-        }
-        vkCmdBindVertexBuffers2!!(handle, 0u, vertexBuffers.size.toUInt(), buffers, null, null, null)
+        val vertexBufferHandles = memScope.allocArrayOf(vertexBuffers.map { it.handle })
+        vkCmdBindVertexBuffers2!!(handle, 0u, vertexBuffers.size.toUInt(), vertexBufferHandles, null, null, null)
     }
 
     /**

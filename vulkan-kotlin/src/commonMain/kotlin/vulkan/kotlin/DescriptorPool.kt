@@ -7,10 +7,8 @@ import kotlinx.cinterop.allocArrayOf
 import kotlinx.cinterop.get
 import kotlinx.cinterop.invoke
 import kotlinx.cinterop.ptr
-import kotlinx.cinterop.value
 import volk.VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO
 import volk.VkDescriptorPool
-import volk.VkDescriptorSet
 import volk.VkDescriptorSetAllocateInfo
 import volk.VkDescriptorSetVar
 import volk.VkDevice
@@ -51,11 +49,9 @@ class DescriptorPool(
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkFreeDescriptorSets.html">vkFreeDescriptorSets</a>
      */
     context(memScope: MemScope)
-    fun freeDescriptorSets(descriptorSets: List<VkDescriptorSet>) {
-        val sets = memScope.allocArray<VkDescriptorSetVar>(descriptorSets.size) {
-            value = descriptorSets[it]
-        }
-        vkFreeDescriptorSets!!(device, handle, descriptorSets.size.toUInt(), sets)
+    fun freeDescriptorSets(descriptorSets: List<DescriptorSet>) {
+        val descriptorSetHandles = memScope.allocArrayOf(descriptorSets.map { it.handle })
+        vkFreeDescriptorSets!!(device, handle, descriptorSets.size.toUInt(), descriptorSetHandles)
     }
 
     /**
