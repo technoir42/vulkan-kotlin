@@ -251,13 +251,13 @@ class Device(
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateGraphicsPipelines.html">vkCreateGraphicsPipelines</a>
      */
     context(memScope: MemScope)
-    fun createGraphicsPipeline(createInfo: VkGraphicsPipelineCreateInfo.() -> Unit): Pipeline {
+    fun createGraphicsPipeline(pipeineCache: PipelineCache? = null, createInfo: VkGraphicsPipelineCreateInfo.() -> Unit): Pipeline {
         val graphicsPipelineCreateInfo = memScope.alloc<VkGraphicsPipelineCreateInfo> {
             sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO
             createInfo()
         }
         val pipelineVar = memScope.alloc<VkPipelineVar>()
-        vkCreateGraphicsPipelines!!(handle, null, 1u, graphicsPipelineCreateInfo.ptr, null, pipelineVar.ptr)
+        vkCreateGraphicsPipelines!!(handle, pipeineCache?.handle, 1u, graphicsPipelineCreateInfo.ptr, null, pipelineVar.ptr)
             .checkResult("Failed to create graphics pipeline")
         return Pipeline(handle, pipelineVar.value!!)
     }
@@ -285,7 +285,7 @@ class Device(
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreatePipelineLayout.html">vkCreatePipelineLayout</a>
      */
     context(memScope: MemScope)
-    fun createPipelineLayout(createInfo: VkPipelineLayoutCreateInfo.() -> Unit): PipelineLayout {
+    fun createPipelineLayout(createInfo: VkPipelineLayoutCreateInfo.() -> Unit = {}): PipelineLayout {
         val pipelineLayoutCreateInfo = memScope.alloc<VkPipelineLayoutCreateInfo> {
             sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO
             createInfo()
