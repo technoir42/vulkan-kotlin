@@ -47,6 +47,7 @@ import volk.vkCmdDrawIndexed
 import volk.vkCmdDrawIndexedIndirect
 import volk.vkCmdDrawIndirect
 import volk.vkCmdEndRendering
+import volk.vkCmdExecuteCommands
 import volk.vkCmdPipelineBarrier2
 import volk.vkCmdPushConstants
 import volk.vkCmdSetBlendConstants
@@ -200,6 +201,17 @@ class CommandBuffer(val handle: VkCommandBuffer) {
      */
     fun endRendering() {
         vkCmdEndRendering!!(handle)
+    }
+
+    /**
+     * Execute secondary command buffers from the primary command buffer.
+     *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdExecuteCommands.html">vkCmdExecuteCommands</a>
+     */
+    context(memScope: MemScope)
+    fun executeCommands(commandBuffers: List<CommandBuffer>) {
+        val commandBufferHandles = memScope.allocArrayOf(commandBuffers.map { it.handle })
+        vkCmdExecuteCommands!!(handle, commandBuffers.size.toUInt(), commandBufferHandles)
     }
 
     /**
