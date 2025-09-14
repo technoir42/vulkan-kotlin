@@ -1,6 +1,8 @@
 Vulkan Kotlin
 =============
 
+[![Build](https://github.com/technoir42/vulkan-kotlin/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/technoir42/vulkan-kotlin/actions/workflows/build.yaml)
+
 Kotlin/Native bindings for Vulkan API.
 
 # Supported targets
