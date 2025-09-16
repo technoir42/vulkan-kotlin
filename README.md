@@ -7,6 +7,7 @@ Kotlin/Native bindings for Vulkan API.
 
 # Supported targets
 
+* androidNativeArm64
 * iosArm64
 * iosSimulatorArm64
 * linuxArm64
