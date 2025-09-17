@@ -251,7 +251,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
      *
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDraw.html">vkCmdDraw</a>
      */
-    fun draw(vertexCount: UInt, instanceCount: UInt, firstVertex: UInt, firstInstance: UInt) {
+    fun draw(vertexCount: UInt, instanceCount: UInt = 1u, firstVertex: UInt = 0u, firstInstance: UInt = 0u) {
         vkCmdDraw!!(handle, vertexCount, instanceCount, firstVertex, firstInstance)
     }
 
@@ -260,7 +260,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
      *
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawIndexed.html">vkCmdDrawIndexed</a>
      */
-    fun drawIndexed(indexCount: UInt, instanceCount: UInt, firstIndex: UInt, vertexOffset: Int, firstInstance: UInt) {
+    fun drawIndexed(indexCount: UInt, instanceCount: UInt = 1u, firstIndex: UInt = 0u, vertexOffset: Int = 0, firstInstance: UInt = 0u) {
         vkCmdDrawIndexed!!(handle, indexCount, instanceCount, firstIndex, vertexOffset, firstInstance)
     }
 
