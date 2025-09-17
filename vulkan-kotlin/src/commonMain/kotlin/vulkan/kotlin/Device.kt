@@ -17,7 +17,18 @@ import volk.VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO
 import volk.VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO
 import volk.VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO
 import volk.VK_STRUCTURE_TYPE_PIPELINE_CACHE_CREATE_INFO
+import volk.VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO
+import volk.VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO
+import volk.VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO
+import volk.VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO
 import volk.VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO
+import volk.VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO
+import volk.VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO
+import volk.VK_STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO
+import volk.VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO
+import volk.VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_STATE_CREATE_INFO
+import volk.VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO
+import volk.VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO
 import volk.VK_STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO
 import volk.VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO
 import volk.VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO
@@ -46,9 +57,21 @@ import volk.VkImageViewVar
 import volk.VkMemoryAllocateInfo
 import volk.VkPipelineCacheCreateInfo
 import volk.VkPipelineCacheVar
+import volk.VkPipelineColorBlendStateCreateInfo
+import volk.VkPipelineCreateFlags
+import volk.VkPipelineDepthStencilStateCreateInfo
+import volk.VkPipelineDynamicStateCreateInfo
+import volk.VkPipelineInputAssemblyStateCreateInfo
 import volk.VkPipelineLayoutCreateInfo
 import volk.VkPipelineLayoutVar
+import volk.VkPipelineMultisampleStateCreateInfo
+import volk.VkPipelineRasterizationStateCreateInfo
+import volk.VkPipelineRenderingCreateInfo
+import volk.VkPipelineShaderStageCreateInfo
+import volk.VkPipelineTessellationStateCreateInfo
 import volk.VkPipelineVar
+import volk.VkPipelineVertexInputStateCreateInfo
+import volk.VkPipelineViewportStateCreateInfo
 import volk.VkQueryPoolCreateInfo
 import volk.VkQueryPoolVar
 import volk.VkQueueVar
@@ -251,13 +274,89 @@ class Device(
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateGraphicsPipelines.html">vkCreateGraphicsPipelines</a>
      */
     context(memScope: MemScope)
-    fun createGraphicsPipeline(pipeineCache: PipelineCache? = null, createInfo: VkGraphicsPipelineCreateInfo.() -> Unit): Pipeline {
+    @Suppress("LongParameterList", "LongMethod")
+    fun createGraphicsPipeline(
+        layout: PipelineLayout,
+        stageCount: UInt,
+        stages: VkPipelineShaderStageCreateInfo.(Int) -> Unit = {},
+        vertexInputState: VkPipelineVertexInputStateCreateInfo.() -> Unit = {},
+        inputAssemblyState: VkPipelineInputAssemblyStateCreateInfo.() -> Unit = {},
+        tessellationState: VkPipelineTessellationStateCreateInfo.() -> Unit = {},
+        viewportState: VkPipelineViewportStateCreateInfo.() -> Unit = {},
+        rasterizationState: VkPipelineRasterizationStateCreateInfo.() -> Unit = {},
+        multisampleState: VkPipelineMultisampleStateCreateInfo.() -> Unit = {},
+        depthStencilState: VkPipelineDepthStencilStateCreateInfo.() -> Unit = {},
+        colorBlendState: VkPipelineColorBlendStateCreateInfo.() -> Unit = {},
+        dynamicState: VkPipelineDynamicStateCreateInfo.() -> Unit = {},
+        renderingCreateInfo: VkPipelineRenderingCreateInfo.() -> Unit = {},
+        flags: VkPipelineCreateFlags = 0u,
+        basePipeline: Pipeline? = null,
+        cache: PipelineCache? = null
+    ): Pipeline {
+        val shaderStageCreateInfo = memScope.allocArray<VkPipelineShaderStageCreateInfo>(stageCount.toInt()) {
+            sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO
+            stages(it)
+        }
+        val vertexInputStateCreateInfo = memScope.alloc<VkPipelineVertexInputStateCreateInfo> {
+            sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO
+            vertexInputState()
+        }
+        val inputAssemblyStateCreateInfo = memScope.alloc<VkPipelineInputAssemblyStateCreateInfo> {
+            sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO
+            inputAssemblyState()
+        }
+        val tessellationStateCreateInfo = memScope.alloc<VkPipelineTessellationStateCreateInfo> {
+            sType = VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_STATE_CREATE_INFO
+            tessellationState()
+        }
+        val viewportStateCreateInfo = memScope.alloc<VkPipelineViewportStateCreateInfo> {
+            sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO
+            viewportState()
+        }
+        val rasterizationStateCreateInfo = memScope.alloc<VkPipelineRasterizationStateCreateInfo> {
+            sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO
+            rasterizationState()
+        }
+        val multisampleStateCreateInfo = memScope.alloc<VkPipelineMultisampleStateCreateInfo> {
+            sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO
+            multisampleState()
+        }
+        val depthStencilStateCreateInfo = memScope.alloc<VkPipelineDepthStencilStateCreateInfo> {
+            sType = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO
+            depthStencilState()
+        }
+        val colorBlendStateCreateInfo = memScope.alloc<VkPipelineColorBlendStateCreateInfo> {
+            sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO
+            colorBlendState()
+        }
+        val dynamicStateCreateInfo = memScope.alloc<VkPipelineDynamicStateCreateInfo> {
+            sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO
+            dynamicState()
+        }
+        val renderingCreateInfo = memScope.alloc<VkPipelineRenderingCreateInfo> {
+            sType = VK_STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO
+            renderingCreateInfo()
+        }
         val graphicsPipelineCreateInfo = memScope.alloc<VkGraphicsPipelineCreateInfo> {
             sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO
-            createInfo()
+            this.flags = flags
+            this.stageCount = stageCount
+            this.layout = layout.handle
+            pStages = shaderStageCreateInfo
+            pVertexInputState = vertexInputStateCreateInfo.ptr
+            pInputAssemblyState = inputAssemblyStateCreateInfo.ptr
+            pTessellationState = tessellationStateCreateInfo.ptr
+            pViewportState = viewportStateCreateInfo.ptr
+            pRasterizationState = rasterizationStateCreateInfo.ptr
+            pMultisampleState = multisampleStateCreateInfo.ptr
+            pDepthStencilState = depthStencilStateCreateInfo.ptr
+            pColorBlendState = colorBlendStateCreateInfo.ptr
+            pDynamicState = dynamicStateCreateInfo.ptr
+            pNext = renderingCreateInfo.ptr
+            basePipelineHandle = basePipeline?.handle
         }
         val pipelineVar = memScope.alloc<VkPipelineVar>()
-        vkCreateGraphicsPipelines!!(handle, pipeineCache?.handle, 1u, graphicsPipelineCreateInfo.ptr, null, pipelineVar.ptr)
+        vkCreateGraphicsPipelines!!(handle, cache?.handle, 1u, graphicsPipelineCreateInfo.ptr, null, pipelineVar.ptr)
             .checkResult("Failed to create graphics pipeline")
         return Pipeline(handle, pipelineVar.value!!)
     }
