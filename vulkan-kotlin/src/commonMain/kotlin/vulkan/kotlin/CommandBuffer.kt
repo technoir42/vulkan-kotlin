@@ -2,6 +2,7 @@ package vulkan.kotlin
 
 import kotlinx.cinterop.MemScope
 import kotlinx.cinterop.UIntVar
+import kotlinx.cinterop.ULongVar
 import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.alloc
 import kotlinx.cinterop.allocArray
@@ -18,11 +19,14 @@ import volk.VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2
 import volk.VK_STRUCTURE_TYPE_RENDERING_INFO
 import volk.VK_WHOLE_SIZE
 import volk.VkBufferMemoryBarrier2
+import volk.VkBufferVar
 import volk.VkCommandBuffer
 import volk.VkCommandBufferBeginInfo
 import volk.VkCompareOp
 import volk.VkCullModeFlags
 import volk.VkDependencyInfo
+import volk.VkDeviceSize
+import volk.VkDeviceSizeVar
 import volk.VkExtent2D
 import volk.VkFrontFace
 import volk.VkImageMemoryBarrier2
@@ -42,6 +46,7 @@ import volk.vkCmdBeginRendering
 import volk.vkCmdBindDescriptorSets
 import volk.vkCmdBindIndexBuffer2
 import volk.vkCmdBindPipeline
+import volk.vkCmdBindVertexBuffers
 import volk.vkCmdBindVertexBuffers2
 import volk.vkCmdDraw
 import volk.vkCmdDrawIndexed
@@ -159,14 +164,39 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     }
 
     /**
+     * Bind a vertex buffer to the command buffer.
+     *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindVertexBuffers.html">vkCmdBindVertexBuffers</a>
+     */
+    context(memScope: MemScope)
+    fun bindVertexBuffer(vertexBuffer: Buffer, offset: VkDeviceSize = 0UL, bindingIndex: UInt = 0u) {
+        val vertexBufferVar = memScope.alloc<VkBufferVar> { value = vertexBuffer.handle }
+        val offsetVar = memScope.alloc<VkDeviceSizeVar> { value = offset }
+        vkCmdBindVertexBuffers!!(handle, bindingIndex, 1u, vertexBufferVar.ptr, offsetVar.ptr)
+    }
+
+    /**
+     * Bind vertex buffers to the command buffer.
+     *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindVertexBuffers.html">vkCmdBindVertexBuffers</a>
+     */
+    context(memScope: MemScope)
+    fun bindVertexBuffers(vertexBuffers: List<Buffer>, offsets: List<ULong>, firstBinding: UInt = 0u) {
+        val vertexBufferHandles = memScope.allocArrayOf(vertexBuffers.map { it.handle })
+        val offsetsArray = memScope.allocArray<ULongVar>(offsets.size) { value = offsets[it] }
+        vkCmdBindVertexBuffers!!(handle, firstBinding, vertexBuffers.size.toUInt(), vertexBufferHandles, offsetsArray)
+    }
+
+    /**
      * Bind vertex buffers to the command buffer.
      *
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindVertexBuffers2.html">vkCmdBindVertexBuffers2</a>
      */
     context(memScope: MemScope)
-    fun bindVertexBuffers(vertexBuffers: List<Buffer>) {
+    fun bindVertexBuffers2(vertexBuffers: List<Buffer>, offsets: List<ULong>, firstBinding: UInt = 0u) {
         val vertexBufferHandles = memScope.allocArrayOf(vertexBuffers.map { it.handle })
-        vkCmdBindVertexBuffers2!!(handle, 0u, vertexBuffers.size.toUInt(), vertexBufferHandles, null, null, null)
+        val offsetsArray = memScope.allocArray<ULongVar>(offsets.size) { value = offsets[it] }
+        vkCmdBindVertexBuffers2!!(handle, firstBinding, vertexBuffers.size.toUInt(), vertexBufferHandles, null, null, null)
     }
 
     /**
