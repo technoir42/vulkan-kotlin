@@ -29,6 +29,7 @@ import volk.VkImageMemoryBarrier2
 import volk.VkIndexType
 import volk.VkOffset2D
 import volk.VkPipelineBindPoint
+import volk.VkPolygonMode
 import volk.VkPrimitiveTopology
 import volk.VkRect2D
 import volk.VkRenderingInfo
@@ -60,6 +61,7 @@ import volk.vkCmdSetDepthTestEnable
 import volk.vkCmdSetDepthWriteEnable
 import volk.vkCmdSetFrontFace
 import volk.vkCmdSetLineWidth
+import volk.vkCmdSetPolygonModeEXT
 import volk.vkCmdSetPrimitiveRestartEnable
 import volk.vkCmdSetPrimitiveTopology
 import volk.vkCmdSetRasterizerDiscardEnable
@@ -405,6 +407,17 @@ class CommandBuffer(val handle: VkCommandBuffer) {
      */
     fun setLineWidth(lineWidth: Float) {
         vkCmdSetLineWidth!!(handle, lineWidth)
+    }
+
+    /**
+     * Set polygon mode dynamically for the command buffer.
+     *
+     * Requires `VK_EXT_extended_dynamic_state3` or `VK_EXT_shader_object` extension.
+     *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetPolygonModeEXT.html">vkCmdSetPolygonModeEXT</a>
+     */
+    fun setPolygonMode(polygonMode: VkPolygonMode) {
+        vkCmdSetPolygonModeEXT!!(handle, polygonMode)
     }
 
     /**
