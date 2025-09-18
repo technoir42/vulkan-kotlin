@@ -7,6 +7,7 @@ kotlinMultiplatformApplication {
 }
 
 kotlin {
+    androidNativeArm64()
     iosArm64()
     iosSimulatorArm64()
     linuxArm64()
