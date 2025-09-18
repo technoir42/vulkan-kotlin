@@ -169,7 +169,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindVertexBuffers.html">vkCmdBindVertexBuffers</a>
      */
     context(memScope: MemScope)
-    fun bindVertexBuffer(vertexBuffer: Buffer, offset: VkDeviceSize = 0UL, bindingIndex: UInt = 0u) {
+    fun bindVertexBuffer(vertexBuffer: Buffer, offset: VkDeviceSize = 0u, bindingIndex: UInt = 0u) {
         val vertexBufferVar = memScope.alloc<VkBufferVar> { value = vertexBuffer.handle }
         val offsetVar = memScope.alloc<VkDeviceSizeVar> { value = offset }
         vkCmdBindVertexBuffers!!(handle, bindingIndex, 1u, vertexBufferVar.ptr, offsetVar.ptr)

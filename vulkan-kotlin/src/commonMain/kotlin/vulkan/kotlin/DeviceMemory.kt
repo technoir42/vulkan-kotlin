@@ -33,7 +33,7 @@ class DeviceMemory(
      * Copy data from a source to the device memory.
      */
     context(memScope: MemScope)
-    fun copyData(source: Source, expectedSize: ULong, offset: ULong) {
+    fun copyData(source: Source, expectedSize: ULong, offset: ULong = 0u) {
         val mappedPtr = map(expectedSize, offset).reinterpret<ByteVar>()
         try {
             val buffer = ByteArray(READ_BUFFER_SIZE)
@@ -63,7 +63,7 @@ class DeviceMemory(
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkMapMemory.html">vkMapMemory</a>
      */
     context(memScope: MemScope)
-    fun map(size: ULong, offset: ULong): CPointer<out CPointed> {
+    fun map(size: ULong, offset: ULong = 0u): CPointer<out CPointed> {
         require(size > 0u) { "Size must be greater than 0" }
         require(offset + size <= this.size) { "Offset $offset + $size exceeds total memory size ${this.size}" }
 
