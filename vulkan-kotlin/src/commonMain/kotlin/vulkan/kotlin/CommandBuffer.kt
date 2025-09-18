@@ -27,11 +27,9 @@ import volk.VkCullModeFlags
 import volk.VkDependencyInfo
 import volk.VkDeviceSize
 import volk.VkDeviceSizeVar
-import volk.VkExtent2D
 import volk.VkFrontFace
 import volk.VkImageMemoryBarrier2
 import volk.VkIndexType
-import volk.VkOffset2D
 import volk.VkPipelineBindPoint
 import volk.VkPolygonMode
 import volk.VkPrimitiveTopology
@@ -71,12 +69,14 @@ import volk.vkCmdSetPrimitiveRestartEnable
 import volk.vkCmdSetPrimitiveTopology
 import volk.vkCmdSetRasterizerDiscardEnable
 import volk.vkCmdSetScissor
+import volk.vkCmdSetScissorWithCount
 import volk.vkCmdSetStencilCompareMask
 import volk.vkCmdSetStencilOp
 import volk.vkCmdSetStencilReference
 import volk.vkCmdSetStencilTestEnable
 import volk.vkCmdSetStencilWriteMask
 import volk.vkCmdSetViewport
+import volk.vkCmdSetViewportWithCount
 import volk.vkEndCommandBuffer
 import volk.vkResetCommandBuffer
 
@@ -483,14 +483,20 @@ class CommandBuffer(val handle: VkCommandBuffer) {
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetScissor.html">vkCmdSetScissor</a>
      */
     context(memScope: MemScope)
-    fun setScissor(extent: VkExtent2D, offset: VkOffset2D) {
-        val scissor = memScope.alloc<VkRect2D> {
-            this.offset.x = offset.x
-            this.offset.y = offset.y
-            this.extent.width = extent.width
-            this.extent.height = extent.height
-        }
+    fun setScissor(scissor: VkRect2D.() -> Unit) {
+        val scissor = memScope.alloc<VkRect2D> { scissor() }
         vkCmdSetScissor!!(handle, 0u, 1u, scissor.ptr)
+    }
+
+    /**
+     *
+     *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetScissorWithCount.html">vkCmdSetScissorWithCount</a>
+     */
+    context(memScope: MemScope)
+    fun setScissorWithCount(count: UInt, scissor: VkRect2D.(UInt) -> Unit) {
+        val scissors = memScope.allocArray<VkRect2D>(count.toLong()) { scissor(it.toUInt()) }
+        vkCmdSetScissorWithCount!!(handle, count, scissors)
     }
 
     /**
@@ -553,5 +559,16 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     fun setViewport(viewport: VkViewport.() -> Unit) {
         val vp = memScope.alloc<VkViewport> { viewport() }
         vkCmdSetViewport!!(handle, 0u, 1u, vp.ptr)
+    }
+
+    /**
+     * Set the viewport count and viewports dynamically for the command buffer
+     *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetViewportWithCount.html">vkCmdSetViewportWithCount</a>
+     */
+    context(memScope: MemScope)
+    fun setViewportWithCount(count: UInt, viewport: VkViewport.(UInt) -> Unit) {
+        val viewports = memScope.allocArray<VkViewport>(count.toLong()) { viewport(it.toUInt()) }
+        vkCmdSetViewportWithCount!!(handle, count, viewports)
     }
 }
