@@ -278,7 +278,7 @@ class Device(
     fun createGraphicsPipeline(
         layout: PipelineLayout,
         stageCount: UInt,
-        stages: VkPipelineShaderStageCreateInfo.(Int) -> Unit = {},
+        stages: VkPipelineShaderStageCreateInfo.(UInt) -> Unit = {},
         vertexInputState: VkPipelineVertexInputStateCreateInfo.() -> Unit = {},
         inputAssemblyState: VkPipelineInputAssemblyStateCreateInfo.() -> Unit = {},
         tessellationState: VkPipelineTessellationStateCreateInfo.() -> Unit = {},
@@ -293,9 +293,9 @@ class Device(
         basePipeline: Pipeline? = null,
         cache: PipelineCache? = null
     ): Pipeline {
-        val shaderStageCreateInfo = memScope.allocArray<VkPipelineShaderStageCreateInfo>(stageCount.toInt()) {
+        val shaderStageCreateInfo = memScope.allocArray<VkPipelineShaderStageCreateInfo>(stageCount.toLong()) {
             sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO
-            stages(it)
+            stages(it.toUInt())
         }
         val vertexInputStateCreateInfo = memScope.alloc<VkPipelineVertexInputStateCreateInfo> {
             sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO
