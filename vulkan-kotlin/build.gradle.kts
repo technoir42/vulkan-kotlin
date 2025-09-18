@@ -18,6 +18,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             api(project(":volk-kotlin"))
+            api(libs.kotlinx.datetime)
             api(libs.kotlinx.io.core)
         }
     }

@@ -12,6 +12,7 @@ import volk.VkFenceVar
 import volk.vkDestroyFence
 import volk.vkResetFences
 import volk.vkWaitForFences
+import kotlin.time.Duration
 
 class Fence(
     private val device: VkDevice,
@@ -47,11 +48,11 @@ class Fence(
      * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkWaitForFences.html">vkWaitForFences</a>
      */
     context(memScope: MemScope)
-    fun wait(timeout: ULong = ULong.MAX_VALUE) {
+    fun wait(timeout: Duration = Duration.INFINITE) {
         val fenceVar = memScope.alloc<VkFenceVar> {
             value = handle
         }
-        vkWaitForFences!!(device, 1u, fenceVar.ptr, VK_TRUE, timeout)
+        vkWaitForFences!!(device, 1u, fenceVar.ptr, VK_TRUE, timeout.inWholeNanoseconds.toULong())
             .checkResult("Failed to wait for fence")
     }
 }

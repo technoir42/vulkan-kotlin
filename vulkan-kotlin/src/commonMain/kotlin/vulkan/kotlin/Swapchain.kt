@@ -18,6 +18,7 @@ import volk.VkSwapchainKHR
 import volk.vkAcquireNextImage2KHR
 import volk.vkDestroySwapchainKHR
 import volk.vkGetSwapchainImagesKHR
+import kotlin.time.Duration
 
 class Swapchain(
     private val device: VkDevice,
@@ -33,7 +34,7 @@ class Swapchain(
     fun acquireNextImage(
         semaphore: Semaphore? = null,
         fence: Fence? = null,
-        timeout: ULong = ULong.MAX_VALUE
+        timeout: Duration = Duration.INFINITE
     ): Result<UInt> {
         val acquireInfo = memScope.alloc<VkAcquireNextImageInfoKHR> {
             sType = VK_STRUCTURE_TYPE_ACQUIRE_NEXT_IMAGE_INFO_KHR
@@ -41,7 +42,7 @@ class Swapchain(
             swapchain = handle
             this.semaphore = semaphore?.handle
             this.fence = fence?.handle
-            this.timeout = timeout
+            this.timeout = timeout.inWholeNanoseconds.toULong()
         }
         val imageIndexVar = memScope.alloc<UIntVar>()
         val result = vkAcquireNextImage2KHR!!(device, acquireInfo.ptr, imageIndexVar.ptr)
