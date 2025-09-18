@@ -24,6 +24,12 @@ plugins {
     id("io.github.technoir42.conventions.settings")
 }
 
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+    }
+}
+
 globalSettings {
     projectId = "vulkan-kotlin"
 }
