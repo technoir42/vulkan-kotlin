@@ -37,6 +37,8 @@ jobs:
         env:
           C_INCLUDE_PATH: ${{ env.VULKAN_SDK }}/include
           LIBRARY_PATH: ${{ env.VULKAN_SDK }}/lib
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
         run: >
           ./gradlew publish
           --no-configuration-cache
