@@ -1,7 +1,7 @@
 Vulkan Kotlin
 =============
 
-[![Build](https://github.com/technoir42/vulkan-kotlin/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/technoir42/vulkan-kotlin/actions/workflows/build.yaml)
+[![Build](https://github.com/technoir-lab/vulkan-kotlin/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/technoir-lab/vulkan-kotlin/actions/workflows/build.yaml)
 
 Kotlin Multiplatform bindings for Vulkan API.
 
@@ -29,7 +29,7 @@ Kotlin Multiplatform bindings for Vulkan API.
     ```kotlin
     dependencyResolutionManagement {
         repositories {
-            maven("https://maven.pkg.github.com/technoir42/vulkan-kotlin") {
+            maven("https://maven.pkg.github.com/technoir-lab/vulkan-kotlin") {
                 name = "vulkan-kotlin"
                 credentials {
                     username = providers.gradleProperty("gpr.user").get()
@@ -48,7 +48,7 @@ Add Volk Kotlin dependency to your project:
 kotlin {
    sourceSets.commonMain {
        dependencies {
-           implementation("io.github.technoir42:volk-kotlin:<version>")
+           implementation("io.github.technoir-lab.vulkan:volk-kotlin:<version>")
        }
    }
 }
@@ -70,7 +70,7 @@ Add Vulkan Kotlin dependency to your project:
 kotlin {
    sourceSets.commonMain {
        dependencies {
-           implementation("io.github.technoir42:vulkan-kotlin:<version>")
+           implementation("io.github.technoir-lab.vulkan:vulkan-kotlin:<version>")
        }
    }
 }
