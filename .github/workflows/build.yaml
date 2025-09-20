@@ -38,11 +38,13 @@ jobs:
           version: 1.4.321.0
           cache: true
 
+      - name: Set environment variables
+        run: |
+          echo "C_INCLUDE_PATH=${{ env.VULKAN_SDK }}/include" >> $GITHUB_ENV
+          echo "LIBRARY_PATH=${{ env.VULKAN_SDK }}/lib" >> $GITHUB_ENV
+
       - name: Build with Gradle
-        env:
-          C_INCLUDE_PATH: ${{ env.VULKAN_SDK }}/include
-          LIBRARY_PATH: ${{ env.VULKAN_SDK }}/lib
-        run: >
-          ./gradlew build
-          -Pgpr.user=${{ github.repository_owner }}
+        run: |
+          ./gradlew build \
+          -Pgpr.user=${{ github.repository_owner }} \
           -Pgpr.token=${{ secrets.GITHUB_TOKEN }}

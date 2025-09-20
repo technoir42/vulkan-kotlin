@@ -33,10 +33,13 @@ jobs:
           version: 1.4.321.0
           cache: true
 
+      - name: Set environment variables
+        run: |
+          echo "C_INCLUDE_PATH=${{ env.VULKAN_SDK }}/include" >> $GITHUB_ENV
+          echo "LIBRARY_PATH=${{ env.VULKAN_SDK }}/lib" >> $GITHUB_ENV
+
       - name: Publish
         env:
-          C_INCLUDE_PATH: ${{ env.VULKAN_SDK }}/include
-          LIBRARY_PATH: ${{ env.VULKAN_SDK }}/lib
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
           SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
         run: >
