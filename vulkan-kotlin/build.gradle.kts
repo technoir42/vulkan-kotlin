@@ -3,7 +3,7 @@ plugins {
 }
 
 kotlinMultiplatformLibrary {
-    defaultTargets = false
+    packageName = "io.technoirlab.vulkan"
 }
 
 kotlin {

@@ -7,8 +7,7 @@ plugins {
 }
 
 kotlinMultiplatformLibrary {
-    packageName = "volk"
-    defaultTargets = false
+    packageName = "io.technoirlab.volk"
 
     buildFeatures {
         cinterop = true

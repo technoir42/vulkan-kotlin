@@ -2,10 +2,6 @@ plugins {
     id("io.technoirlab.conventions.kotlin-multiplatform-application")
 }
 
-kotlinMultiplatformApplication {
-    defaultTargets = false
-}
-
 kotlin {
     androidNativeArm64()
     iosArm64()

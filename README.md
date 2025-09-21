@@ -57,7 +57,7 @@ kotlin {
 You can now initialize Volk and use Vulkan API from Kotlin:
 
    ```kotlin
-   import volk.volkInitialize
+   import io.technoirlab.volk.volkInitialize
    
    val result = volkInitialize()
    ```

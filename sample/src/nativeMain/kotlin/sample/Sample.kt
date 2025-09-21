@@ -1,16 +1,16 @@
 package sample
 
+import io.technoirlab.volk.VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR
+import io.technoirlab.volk.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME
+import io.technoirlab.volk.VK_VERSION_MAJOR
+import io.technoirlab.volk.VK_VERSION_MINOR
+import io.technoirlab.volk.VK_VERSION_PATCH
+import io.technoirlab.vulkan.Context
+import io.technoirlab.vulkan.Device
+import io.technoirlab.vulkan.Instance
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.toCStringArray
 import kotlinx.cinterop.toKString
-import volk.VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR
-import volk.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME
-import volk.VK_VERSION_MAJOR
-import volk.VK_VERSION_MINOR
-import volk.VK_VERSION_PATCH
-import vulkan.kotlin.Context
-import vulkan.kotlin.Device
-import vulkan.kotlin.Instance
 import kotlin.experimental.ExperimentalNativeApi
 
 @OptIn(ExperimentalNativeApi::class)
