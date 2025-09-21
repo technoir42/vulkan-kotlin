@@ -1,11 +1,35 @@
 Vulkan Kotlin
 =============
 
-[![Build](https://github.com/technoir-lab/vulkan-kotlin/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/technoir-lab/vulkan-kotlin/actions/workflows/build.yaml)
+[![Build](https://github.com/technoir-lab/vulkan-kotlin/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/technoir-lab/vulkan-kotlin/actions/workflows/build.yaml) ![Maven Central Version](https://img.shields.io/maven-central/v/io.technoirlab.vulkan/vulkan-kotlin)
 
-Kotlin Multiplatform bindings for Vulkan API.
+Kotlin Multiplatform bindings for Vulkan API, which add features like type safety, RAII, exceptions and integration with standard Kotlin libraries.
 
-# Supported targets
+## Getting Started
+
+Add vulkan-kotlin dependency to your KMP project:
+
+```kotlin
+kotlin {
+   sourceSets.commonMain {
+       dependencies {
+           implementation("io.technoirlab.vulkan:vulkan-kotlin:<latest version>")
+       }
+   }
+}
+```
+
+Load Vulkan API and create instance:
+
+```kotlin
+val vulkan = Vulkan()
+val instance = vulkan.createInstance()
+...
+```
+
+See a sample project [here](sample).
+
+## Supported targets
 
 * androidNativeArm64
 * iosArm64
@@ -14,67 +38,6 @@ Kotlin Multiplatform bindings for Vulkan API.
 * linuxX64
 * macosArm64
 * mingwX64
-
-## Usage
-
-### Add vulkan-kotlin repository
-
-1. Add your personal GitHub credentials to `~/.gradle/gradle.properties`:
-    ```properties
-    gpr.user=your-github-username
-    gpr.token=your-personal-access-token
-    ```
-
-2. Add this repository's package registry to your project's Maven repositories in `settings.gradle.kts`:
-    ```kotlin
-    dependencyResolutionManagement {
-        repositories {
-            maven("https://maven.pkg.github.com/technoir-lab/vulkan-kotlin") {
-                name = "vulkan-kotlin"
-                credentials {
-                    username = providers.gradleProperty("gpr.user").get()
-                    password = providers.gradleProperty("gpr.token").get()
-                }
-            }
-        }
-    }
-    ```
-
-### Using Vulkan API via Volk
-
-Add Volk Kotlin dependency to your project:
-
-```kotlin
-kotlin {
-   sourceSets.commonMain {
-       dependencies {
-           implementation("io.github.technoir-lab.vulkan:volk-kotlin:<version>")
-       }
-   }
-}
-```
-
-You can now initialize Volk and use Vulkan API from Kotlin:
-
-   ```kotlin
-   import io.technoirlab.volk.volkInitialize
-   
-   val result = volkInitialize()
-   ```
-
-### Using Vulkan API wrapper
-
-Add Vulkan Kotlin dependency to your project:
-
-```kotlin
-kotlin {
-   sourceSets.commonMain {
-       dependencies {
-           implementation("io.github.technoir-lab.vulkan:vulkan-kotlin:<version>")
-       }
-   }
-}
-```
 
 # License
 
