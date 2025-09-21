@@ -22,7 +22,7 @@ import kotlinx.cinterop.invoke
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.value
 
-class Context : AutoCloseable {
+class Vulkan : AutoCloseable {
     init {
         volkInitialize().checkResult("Failed to initialize Volk")
     }

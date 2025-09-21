@@ -5,9 +5,9 @@ import io.technoirlab.volk.VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME
 import io.technoirlab.volk.VK_VERSION_MAJOR
 import io.technoirlab.volk.VK_VERSION_MINOR
 import io.technoirlab.volk.VK_VERSION_PATCH
-import io.technoirlab.vulkan.Context
 import io.technoirlab.vulkan.Device
 import io.technoirlab.vulkan.Instance
+import io.technoirlab.vulkan.Vulkan
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.toCStringArray
 import kotlinx.cinterop.toKString
@@ -15,18 +15,18 @@ import kotlin.experimental.ExperimentalNativeApi
 
 @OptIn(ExperimentalNativeApi::class)
 class Sample : AutoCloseable {
-    private val context = Context()
+    private val vulkan = Vulkan()
     private var instance: Instance? = null
     private var device: Device? = null
 
     fun run() = memScoped {
-        val vulkanVersion = context.instanceVersion
+        val vulkanVersion = vulkan.instanceVersion
         println("Vulkan version: ${VK_VERSION_MAJOR(vulkanVersion)}.${VK_VERSION_MINOR(vulkanVersion)}.${VK_VERSION_PATCH(vulkanVersion)}")
 
-        val instanceExtensions = context.enumerateInstanceExtensionProperties()
+        val instanceExtensions = vulkan.enumerateInstanceExtensionProperties()
         println("Supported instance extensions: ${instanceExtensions.joinToString(", ") { it.extensionName.toKString() }}")
 
-        val instanceLayers = context.enumerateInstanceLayerProperties()
+        val instanceLayers = vulkan.enumerateInstanceLayerProperties()
         println("Supported instance layers: ${instanceLayers.joinToString(", ") { it.layerName.toKString() }}")
 
         val extensions = buildList {
@@ -35,7 +35,7 @@ class Sample : AutoCloseable {
             }
         }
 
-        val instance = context.createInstance(instanceInfo = {
+        val instance = vulkan.createInstance(instanceInfo = {
             if (VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME in extensions) {
                 flags = flags or VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR
             }
@@ -60,7 +60,7 @@ class Sample : AutoCloseable {
     override fun close() {
         device?.close()
         instance?.close()
-        context.close()
+        vulkan.close()
     }
 
     private val OsFamily.isAppleFamily: Boolean
