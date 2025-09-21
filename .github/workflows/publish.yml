@@ -1,7 +1,10 @@
 name: Publish
+
 on:
   push:
-    tags: [ '*' ]
+    tags: [ "*" ]
+  workflow_dispatch:
+
 jobs:
   publish:
     runs-on: macos-latest
@@ -49,5 +52,5 @@ jobs:
           -Pgpr.token=${{ secrets.GITHUB_TOKEN }}
           -Pproject.version=${{ github.ref_name }}
           -Ppublish.url=https://maven.pkg.github.com/technoir-lab/vulkan-kotlin
-          -Ppublish.username=${{ secrets.DEPLOY_USER }}
-          -Ppublish.password=${{ secrets.DEPLOY_TOKEN }}
+          -Ppublish.username=${{ secrets.GPR_DEPLOY_USER }}
+          -Ppublish.password=${{ secrets.GPR_DEPLOY_TOKEN }}
