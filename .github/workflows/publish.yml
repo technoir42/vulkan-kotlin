@@ -16,8 +16,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v5
         with:
-          java-version: '21'
-          distribution: 'corretto'
+          java-version: "21"
+          distribution: "corretto"
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -41,16 +41,27 @@ jobs:
           echo "C_INCLUDE_PATH=${{ env.VULKAN_SDK }}/include" >> $GITHUB_ENV
           echo "LIBRARY_PATH=${{ env.VULKAN_SDK }}/lib" >> $GITHUB_ENV
 
-      - name: Publish
+      - name: Publish to GitHub Packages
         env:
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
           SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
-        run: >
-          ./gradlew publish
-          --no-configuration-cache
-          -Pgpr.user=${{ github.repository_owner }}
-          -Pgpr.token=${{ secrets.GITHUB_TOKEN }}
-          -Pproject.version=${{ github.ref_name }}
-          -Ppublish.url=https://maven.pkg.github.com/technoir-lab/vulkan-kotlin
-          -Ppublish.username=${{ secrets.GPR_DEPLOY_USER }}
+        run: |
+          ./gradlew publish \
+          -Pgpr.user=${{ github.repository_owner }} \
+          -Pgpr.token=${{ secrets.GITHUB_TOKEN }} \
+          -Pproject.version=${{ github.ref_name }} \
+          -Ppublish.url=https://maven.pkg.github.com/technoir-lab/vulkan-kotlin \
+          -Ppublish.username=${{ secrets.GPR_DEPLOY_USER }} \
           -Ppublish.password=${{ secrets.GPR_DEPLOY_TOKEN }}
+
+      - name: Publish to Maven Central
+        env:
+          CENTRAL_PORTAL_USER: ${{ secrets.CENTRAL_PORTAL_USER }}
+          CENTRAL_PORTAL_PASSWORD: ${{ secrets.CENTRAL_PORTAL_PASSWORD }}
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+          SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+        run: |
+          ./gradlew publishAggregationToCentralPortal \
+          -Pgpr.user=${{ github.repository_owner }} \
+          -Pgpr.token=${{ secrets.GITHUB_TOKEN }} \
+          -Pproject.version=${{ github.ref_name }}
