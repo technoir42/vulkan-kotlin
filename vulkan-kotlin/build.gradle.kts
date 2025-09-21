@@ -1,5 +1,5 @@
 plugins {
-    id("io.github.technoir42.conventions.kotlin-multiplatform-library")
+    id("io.technoirlab.conventions.kotlin-multiplatform-library")
 }
 
 kotlinMultiplatformLibrary {

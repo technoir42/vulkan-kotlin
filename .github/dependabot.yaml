@@ -2,7 +2,7 @@ version: 2
 registries:
   convention-plugins:
     type: maven-repository
-    url: https://maven.pkg.github.com/technoir42/gradle-convention-plugins
+    url: https://maven.pkg.github.com/technoir-lab/convention-plugins
     username: ${{ secrets.DEPENDABOT_USER }}
     password: ${{ secrets.DEPENDABOT_TOKEN }}
 

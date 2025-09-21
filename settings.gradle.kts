@@ -3,7 +3,7 @@ pluginManagement {
         gradlePluginPortal()
         mavenCentral()
         mavenLocal()
-        maven("https://maven.pkg.github.com/technoir42/gradle-convention-plugins") {
+        maven("https://maven.pkg.github.com/technoir-lab/convention-plugins") {
             credentials {
                 username = providers.gradleProperty("gpr.user").orNull
                 password = providers.gradleProperty("gpr.token").orNull
@@ -11,17 +11,17 @@ pluginManagement {
         }
     }
     plugins {
-        val conventionPluginsVersion = "v28"
-        id("io.github.technoir42.conventions.kotlin-multiplatform-application") version conventionPluginsVersion
-        id("io.github.technoir42.conventions.kotlin-multiplatform-library") version conventionPluginsVersion
-        id("io.github.technoir42.conventions.settings") version conventionPluginsVersion
+        val conventionPluginsVersion = "v29"
+        id("io.technoirlab.conventions.kotlin-multiplatform-application") version conventionPluginsVersion
+        id("io.technoirlab.conventions.kotlin-multiplatform-library") version conventionPluginsVersion
+        id("io.technoirlab.conventions.settings") version conventionPluginsVersion
     }
 }
 
 plugins {
-    id("io.github.technoir42.conventions.kotlin-multiplatform-application") apply false
-    id("io.github.technoir42.conventions.kotlin-multiplatform-library") apply false
-    id("io.github.technoir42.conventions.settings")
+    id("io.technoirlab.conventions.kotlin-multiplatform-application") apply false
+    id("io.technoirlab.conventions.kotlin-multiplatform-library") apply false
+    id("io.technoirlab.conventions.settings")
 }
 
 dependencyResolutionManagement {
