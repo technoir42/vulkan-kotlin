@@ -31,6 +31,7 @@ import io.technoirlab.volk.VkViewport
 import io.technoirlab.volk.vkBeginCommandBuffer
 import io.technoirlab.volk.vkCmdBeginRendering
 import io.technoirlab.volk.vkCmdBindDescriptorSets
+import io.technoirlab.volk.vkCmdBindIndexBuffer
 import io.technoirlab.volk.vkCmdBindIndexBuffer2
 import io.technoirlab.volk.vkCmdBindPipeline
 import io.technoirlab.volk.vkCmdBindVertexBuffers
@@ -143,6 +144,15 @@ class CommandBuffer(val handle: VkCommandBuffer) {
             dynamicOffsets.size.toUInt(),
             dynamicOffsetArray
         )
+    }
+
+    /**
+     * Bind an index buffer to the command buffer.
+     *
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindIndexBuffer.html">vkCmdBindIndexBuffer</a>
+     */
+    fun bindIndexBuffer(indexBuffer: Buffer, indexType: VkIndexType, size: ULong = VK_WHOLE_SIZE) {
+        vkCmdBindIndexBuffer!!(handle, indexBuffer.handle, size, indexType)
     }
 
     /**
