@@ -14,6 +14,7 @@ pluginManagement {
         val conventionPluginsVersion = "v32"
         id("io.technoirlab.conventions.kotlin-multiplatform-application") version conventionPluginsVersion
         id("io.technoirlab.conventions.kotlin-multiplatform-library") version conventionPluginsVersion
+        id("io.technoirlab.conventions.root") version conventionPluginsVersion
         id("io.technoirlab.conventions.settings") version conventionPluginsVersion
     }
 }
@@ -21,6 +22,7 @@ pluginManagement {
 plugins {
     id("io.technoirlab.conventions.kotlin-multiplatform-application") apply false
     id("io.technoirlab.conventions.kotlin-multiplatform-library") apply false
+    id("io.technoirlab.conventions.root") apply false
     id("io.technoirlab.conventions.settings")
 }
 
