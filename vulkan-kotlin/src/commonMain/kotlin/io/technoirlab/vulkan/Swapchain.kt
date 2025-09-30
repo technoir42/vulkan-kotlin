@@ -20,6 +20,11 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.value
 import kotlin.time.Duration
 
+/**
+ * Wrapper for [VkSwapchainKHR].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkSwapchainKHR.html">VkSwapchainKHR</a>
+ */
 class Swapchain(
     private val device: VkDevice,
     val handle: VkSwapchainKHR

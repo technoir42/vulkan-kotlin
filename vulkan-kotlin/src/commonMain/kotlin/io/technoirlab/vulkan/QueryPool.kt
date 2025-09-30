@@ -5,6 +5,11 @@ import io.technoirlab.volk.VkQueryPool
 import io.technoirlab.volk.vkDestroyQueryPool
 import kotlinx.cinterop.invoke
 
+/**
+ * Wrapper for [VkQueryPool].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkQueryPool.html">VkQueryPool</a>
+ */
 class QueryPool(
     private val device: VkDevice,
     val handle: VkQueryPool

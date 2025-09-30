@@ -17,6 +17,11 @@ import kotlinx.cinterop.alloc
 import kotlinx.cinterop.invoke
 import kotlinx.cinterop.ptr
 
+/**
+ * Wrapper for [VkImage].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkImage.html">VkImage</a>
+ */
 class Image(
     private val device: VkDevice,
     val handle: VkImage,

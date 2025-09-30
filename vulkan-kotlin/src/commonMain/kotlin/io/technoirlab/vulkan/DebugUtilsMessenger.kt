@@ -5,6 +5,11 @@ import io.technoirlab.volk.VkInstance
 import io.technoirlab.volk.vkDestroyDebugUtilsMessengerEXT
 import kotlinx.cinterop.invoke
 
+/**
+ * Wrapper for [VkDebugUtilsMessengerEXT].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkDebugUtilsMessengerEXT.html">VkDebugUtilsMessengerEXT</a>
+ */
 class DebugUtilsMessenger(
     private val instance: VkInstance,
     val handle: VkDebugUtilsMessengerEXT

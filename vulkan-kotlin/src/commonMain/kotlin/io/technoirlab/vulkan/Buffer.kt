@@ -17,6 +17,11 @@ import kotlinx.cinterop.alloc
 import kotlinx.cinterop.invoke
 import kotlinx.cinterop.ptr
 
+/**
+ * Wrapper for [VkBuffer].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkBuffer.html">VkBuffer</a>
+ */
 class Buffer(
     private val device: VkDevice,
     val handle: VkBuffer,

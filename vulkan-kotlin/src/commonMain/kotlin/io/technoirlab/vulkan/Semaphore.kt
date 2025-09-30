@@ -11,6 +11,11 @@ import kotlinx.cinterop.alloc
 import kotlinx.cinterop.invoke
 import kotlinx.cinterop.ptr
 
+/**
+ * Wrapper for [VkSemaphore].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkSemaphore.html">VkSemaphore</a>
+ */
 class Semaphore(
     private val device: VkDevice,
     val handle: VkSemaphore

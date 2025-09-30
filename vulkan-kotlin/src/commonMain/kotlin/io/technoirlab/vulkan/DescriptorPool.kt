@@ -17,6 +17,11 @@ import kotlinx.cinterop.get
 import kotlinx.cinterop.invoke
 import kotlinx.cinterop.ptr
 
+/**
+ * Wrapper for [VkDescriptorPool].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkDescriptorPool.html">VkDescriptorPool</a>
+ */
 class DescriptorPool(
     private val device: VkDevice,
     val handle: VkDescriptorPool

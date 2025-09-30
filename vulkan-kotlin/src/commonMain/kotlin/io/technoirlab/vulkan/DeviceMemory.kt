@@ -23,6 +23,11 @@ import kotlinx.io.Source
 import platform.posix.memcpy
 import kotlin.math.min
 
+/**
+ * Wrapper for [VkDeviceMemory].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkDeviceMemory.html">VkDeviceMemory</a>
+ */
 class DeviceMemory(
     private val device: VkDevice,
     val handle: VkDeviceMemory,

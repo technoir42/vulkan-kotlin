@@ -5,6 +5,11 @@ import io.technoirlab.volk.VkDevice
 import io.technoirlab.volk.vkDestroyBufferView
 import kotlinx.cinterop.invoke
 
+/**
+ * Wrapper for [VkBufferView].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkBufferView.html">VkBufferView</a>
+ */
 class BufferView(
     private val device: VkDevice,
     val handle: VkBufferView

@@ -14,6 +14,11 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.value
 import kotlin.time.Duration
 
+/**
+ * Wrapper for [VkFence].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkFence.html">VkFence</a>
+ */
 class Fence(
     private val device: VkDevice,
     val handle: VkFence

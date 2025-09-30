@@ -107,6 +107,11 @@ import kotlinx.cinterop.invoke
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.value
 
+/**
+ * Wrapper for [VkDevice].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkDevice.html">VkDevice</a>
+ */
 class Device(
     val handle: VkDevice
 ) : AutoCloseable {

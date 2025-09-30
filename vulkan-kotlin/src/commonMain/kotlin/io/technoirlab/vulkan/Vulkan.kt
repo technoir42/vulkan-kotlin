@@ -22,6 +22,9 @@ import kotlinx.cinterop.invoke
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.value
 
+/**
+ * Vulkan instance loader.
+ */
 class Vulkan : AutoCloseable {
     init {
         volkInitialize().checkResult("Failed to initialize Volk")

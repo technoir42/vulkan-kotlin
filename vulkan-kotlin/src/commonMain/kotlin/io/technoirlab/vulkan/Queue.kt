@@ -20,6 +20,11 @@ import kotlinx.cinterop.invoke
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.value
 
+/**
+ * Wrapper for [VkQueue].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkQueue.html">VkQueue</a>
+ */
 class Queue(
     val handle: VkQueue,
     val familyIndex: UInt

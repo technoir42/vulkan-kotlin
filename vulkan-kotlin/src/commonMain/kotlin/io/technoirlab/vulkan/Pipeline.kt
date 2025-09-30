@@ -5,6 +5,11 @@ import io.technoirlab.volk.VkPipeline
 import io.technoirlab.volk.vkDestroyPipeline
 import kotlinx.cinterop.invoke
 
+/**
+ * Wrapper for [VkPipeline].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPipeline.html">VkPipeline</a>
+ */
 class Pipeline(
     private val device: VkDevice,
     val handle: VkPipeline

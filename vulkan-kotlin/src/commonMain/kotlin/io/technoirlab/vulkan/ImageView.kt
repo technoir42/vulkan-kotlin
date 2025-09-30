@@ -5,6 +5,11 @@ import io.technoirlab.volk.VkImageView
 import io.technoirlab.volk.vkDestroyImageView
 import kotlinx.cinterop.invoke
 
+/**
+ * Wrapper for [VkImageView].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkImageView.html">VkImageView</a>
+ */
 class ImageView(
     private val device: VkDevice,
     val handle: VkImageView

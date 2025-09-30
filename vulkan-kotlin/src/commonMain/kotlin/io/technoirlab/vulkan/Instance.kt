@@ -18,6 +18,11 @@ import kotlinx.cinterop.invoke
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.value
 
+/**
+ * Wrapper for [VkInstance].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkInstance.html">VkInstance</a>
+ */
 class Instance(val handle: VkInstance) : AutoCloseable {
     init {
         volkLoadInstanceOnly(handle)

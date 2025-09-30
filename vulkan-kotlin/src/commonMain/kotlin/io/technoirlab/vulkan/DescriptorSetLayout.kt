@@ -5,6 +5,11 @@ import io.technoirlab.volk.VkDevice
 import io.technoirlab.volk.vkDestroyDescriptorSetLayout
 import kotlinx.cinterop.invoke
 
+/**
+ * Wrapper for [VkDescriptorSetLayout].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkDescriptorSetLayout.html">VkDescriptorSetLayout</a>
+ */
 class DescriptorSetLayout(
     private val device: VkDevice,
     val handle: VkDescriptorSetLayout

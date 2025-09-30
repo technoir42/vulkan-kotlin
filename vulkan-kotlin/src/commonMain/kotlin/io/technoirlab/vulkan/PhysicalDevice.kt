@@ -52,6 +52,11 @@ import kotlinx.cinterop.invoke
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.value
 
+/**
+ * Wrapper for [VkPhysicalDevice].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDevice.html">VkPhysicalDevice</a>
+ */
 class PhysicalDevice(val handle: VkPhysicalDevice) {
     /**
      * Create a new device instance.

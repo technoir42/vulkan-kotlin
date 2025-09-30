@@ -81,6 +81,11 @@ import kotlinx.cinterop.ptr
 import kotlinx.cinterop.usePinned
 import kotlinx.cinterop.value
 
+/**
+ * Wrapper for [VkCommandBuffer].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkCommandBuffer.html">VkCommandBuffer</a>
+ */
 @Suppress("LongParameterList")
 class CommandBuffer(val handle: VkCommandBuffer) {
     /**

@@ -19,6 +19,11 @@ import kotlinx.cinterop.get
 import kotlinx.cinterop.invoke
 import kotlinx.cinterop.ptr
 
+/**
+ * Wrapper for [VkCommandPool].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkCommandPool.html">VkCommandPool</a>
+ */
 class CommandPool(
     private val device: VkDevice,
     val handle: VkCommandPool

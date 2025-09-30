@@ -8,6 +8,11 @@ import kotlinx.cinterop.MemScope
 import kotlinx.cinterop.allocArrayOf
 import kotlinx.cinterop.invoke
 
+/**
+ * Wrapper for [VkPipelineCache].
+ *
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPipelineCache.html">VkPipelineCache</a>
+ */
 class PipelineCache(
     private val device: VkDevice,
     val handle: VkPipelineCache
