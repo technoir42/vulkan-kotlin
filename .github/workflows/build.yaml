@@ -42,7 +42,7 @@ jobs:
             ${{ runner.os }}-konan-
 
       - name: Install Vulkan SDK
-        uses: technoir42/install-vulkan-sdk@v1.2.2
+        uses: technoir-lab/install-vulkan-sdk@v1.2.3
         with:
           version: 1.4.321.0
           cache: true
