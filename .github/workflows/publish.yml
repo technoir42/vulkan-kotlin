@@ -9,13 +9,14 @@ concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: false
 
-permissions:
-  contents: read
-  packages: write
-
 jobs:
-  publish:
+  packages:
+    name: Packages
     runs-on: macos-latest
+
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - name: Checkout
@@ -73,3 +74,66 @@ jobs:
           -Pgpr.user=${{ github.repository_owner }} \
           -Pgpr.token=${{ secrets.GITHUB_TOKEN }} \
           -Pproject.version=${{ github.ref_name }}
+
+  documentation:
+    name: Documentation
+    runs-on: macos-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          java-version: "21"
+          distribution: "corretto"
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Cache Kotlin/Native toolchains
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: ${{ runner.os }}-konan-${{ hashFiles('settings.gradle.kts') }}
+          restore-keys: |
+            ${{ runner.os }}-konan-
+
+      - name: Install Vulkan SDK
+        uses: technoir-lab/install-vulkan-sdk@v1.2.3
+        with:
+          version: 1.4.321.0
+          cache: true
+
+      - name: Set environment variables
+        run: |
+          echo "C_INCLUDE_PATH=${{ env.VULKAN_SDK }}/include" >> $GITHUB_ENV
+          echo "LIBRARY_PATH=${{ env.VULKAN_SDK }}/lib" >> $GITHUB_ENV
+
+      - name: Generate documentation
+        run: |
+          ./gradlew :vulkan-kotlin:dokkaGenerate \
+          -Pgpr.user=${{ github.repository_owner }} \
+          -Pgpr.token=${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload documentation
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: vulkan-kotlin/build/dokka/html
+
+      - name: Deploy documentation to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
