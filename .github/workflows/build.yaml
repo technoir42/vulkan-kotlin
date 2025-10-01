@@ -10,12 +10,12 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
-permissions:
-  contents: read
-
 jobs:
   build:
     runs-on: macos-latest
+
+    permissions:
+      contents: write # required for dependency graph submission
 
     steps:
       - name: Checkout
