@@ -20,7 +20,7 @@ import kotlinx.cinterop.ptr
 /**
  * Wrapper for [VkDescriptorPool].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkDescriptorPool.html">VkDescriptorPool</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkDescriptorPool.html">VkDescriptorPool Manual Page</a>
  */
 class DescriptorPool(
     private val device: VkDevice,
@@ -30,7 +30,7 @@ class DescriptorPool(
     /**
      * Allocate one or more descriptor sets.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkAllocateDescriptorSets.html">vkAllocateDescriptorSets</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkAllocateDescriptorSets.html">vkAllocateDescriptorSets Manual Page</a>
      */
     context(memScope: MemScope)
     fun allocateDescriptorSets(setLayouts: List<DescriptorSetLayout>): List<DescriptorSet> {
@@ -51,7 +51,7 @@ class DescriptorPool(
     /**
      * Free one or more descriptor sets.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkFreeDescriptorSets.html">vkFreeDescriptorSets</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkFreeDescriptorSets.html">vkFreeDescriptorSets Manual Page</a>
      */
     context(memScope: MemScope)
     fun freeDescriptorSets(descriptorSets: List<DescriptorSet>) {
@@ -62,7 +62,7 @@ class DescriptorPool(
     /**
      * Reset the descriptor pool.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkResetDescriptorPool.html">vkResetDescriptorPool</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkResetDescriptorPool.html">vkResetDescriptorPool Manual Page</a>
      */
     fun reset(flags: UInt = 0u) {
         vkResetDescriptorPool!!(device, handle, flags).checkResult("Failed to reset descriptor pool")
@@ -71,7 +71,7 @@ class DescriptorPool(
     /**
      * Destroy the descriptor pool.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyDescriptorPool.html">vkDestroyDescriptorPool</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyDescriptorPool.html">vkDestroyDescriptorPool Manual Page</a>
      */
     override fun close() {
         vkDestroyDescriptorPool!!(device, handle, null)

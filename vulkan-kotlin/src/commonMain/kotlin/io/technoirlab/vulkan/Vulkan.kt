@@ -46,7 +46,7 @@ class Vulkan : AutoCloseable {
     /**
      * Create a new Vulkan instance.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateInstance.html">vkCreateInstance</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateInstance.html">vkCreateInstance Manual Page</a>
      */
     context(memScope: MemScope)
     fun createInstance(applicationInfo: VkApplicationInfo.() -> Unit = {}, instanceInfo: VkInstanceCreateInfo.() -> Unit = {}): Instance {
@@ -68,7 +68,7 @@ class Vulkan : AutoCloseable {
     /**
      * Enumerate global extension properties.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkEnumerateInstanceExtensionProperties.html">vkEnumerateInstanceExtensionProperties</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkEnumerateInstanceExtensionProperties.html">vkEnumerateInstanceExtensionProperties Manual Page</a>
      */
     context(memScope: MemScope)
     fun enumerateInstanceExtensionProperties(): Sequence<VkExtensionProperties> {
@@ -89,7 +89,7 @@ class Vulkan : AutoCloseable {
     /**
      * Enumerate global layer properties.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkEnumerateInstanceLayerProperties.html">vkEnumerateInstanceLayerProperties</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkEnumerateInstanceLayerProperties.html">vkEnumerateInstanceLayerProperties Manual Page</a>
      */
     context(memScope: MemScope)
     fun enumerateInstanceLayerProperties(): Sequence<VkLayerProperties> {

@@ -8,7 +8,7 @@ import kotlinx.cinterop.invoke
 /**
  * Wrapper for [VkPipelineLayout].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPipelineLayout.html">VkPipelineLayout</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPipelineLayout.html">VkPipelineLayout Manual Page</a>
  */
 class PipelineLayout(
     private val device: VkDevice,
@@ -18,7 +18,7 @@ class PipelineLayout(
     /**
      * Destroy the pipeline layout.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyPipelineLayout.html">vkDestroyPipelineLayout</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyPipelineLayout.html">vkDestroyPipelineLayout Manual Page</a>
      */
     override fun close() {
         vkDestroyPipelineLayout!!(device, handle, null)

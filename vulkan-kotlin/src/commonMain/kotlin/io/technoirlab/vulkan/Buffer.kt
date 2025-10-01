@@ -20,7 +20,7 @@ import kotlinx.cinterop.ptr
 /**
  * Wrapper for [VkBuffer].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkBuffer.html">VkBuffer</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkBuffer.html">VkBuffer Manual Page</a>
  */
 class Buffer(
     private val device: VkDevice,
@@ -31,7 +31,7 @@ class Buffer(
     /**
      * Returns memory requirements for the buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetBufferMemoryRequirements2.html">vkGetBufferMemoryRequirements2</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetBufferMemoryRequirements2.html">vkGetBufferMemoryRequirements2 Manual Page</a>
      */
     context(memScope: MemScope)
     fun getMemoryRequirements(): VkMemoryRequirements {
@@ -49,7 +49,7 @@ class Buffer(
     /**
      * Bind device memory to the buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkBindBufferMemory2.html">vkBindBufferMemory2</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkBindBufferMemory2.html">vkBindBufferMemory2 Manual Page</a>
      */
     context(memScope: MemScope)
     fun bindMemory(memory: DeviceMemory, offset: ULong = 0u) {
@@ -66,7 +66,7 @@ class Buffer(
     /**
      * Destroy the buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyBuffer.html">vkDestroyBuffer</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyBuffer.html">vkDestroyBuffer Manual Page</a>
      */
     override fun close() {
         vkDestroyBuffer!!(device, handle, null)

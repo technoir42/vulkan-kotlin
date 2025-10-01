@@ -84,14 +84,14 @@ import kotlinx.cinterop.value
 /**
  * Wrapper for [VkCommandBuffer].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkCommandBuffer.html">VkCommandBuffer</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkCommandBuffer.html">VkCommandBuffer Manual Page</a>
  */
 @Suppress("LongParameterList")
 class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Start recording the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkBeginCommandBuffer.html">vkBeginCommandBuffer</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkBeginCommandBuffer.html">vkBeginCommandBuffer Manual Page</a>
      */
     context(memScope: MemScope)
     fun begin(beginInfo: VkCommandBufferBeginInfo.() -> Unit = {}) {
@@ -106,7 +106,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Begin a dynamic render pass instance.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBeginRendering.html">vkCmdBeginRendering</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBeginRendering.html">vkCmdBeginRendering Manual Page</a>
      */
     context(memScope: MemScope)
     fun beginRendering(renderingInfo: VkRenderingInfo.() -> Unit) {
@@ -120,7 +120,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Bind descriptor sets to the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindDescriptorSets.html">vkCmdBindDescriptorSets</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindDescriptorSets.html">vkCmdBindDescriptorSets Manual Page</a>
      */
     context(memScope: MemScope)
     fun bindDescriptorSets(
@@ -154,7 +154,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Bind an index buffer to the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindIndexBuffer.html">vkCmdBindIndexBuffer</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindIndexBuffer.html">vkCmdBindIndexBuffer Manual Page</a>
      */
     fun bindIndexBuffer(indexBuffer: Buffer, indexType: VkIndexType, size: ULong = VK_WHOLE_SIZE) {
         vkCmdBindIndexBuffer!!(handle, indexBuffer.handle, size, indexType)
@@ -163,7 +163,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Bind an index buffer to the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindIndexBuffer2.html">vkCmdBindIndexBuffer2</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindIndexBuffer2.html">vkCmdBindIndexBuffer2 Manual Page</a>
      */
     fun bindIndexBuffer(indexBuffer: Buffer, indexType: VkIndexType, offset: ULong = 0u, size: ULong = VK_WHOLE_SIZE) {
         vkCmdBindIndexBuffer2!!(handle, indexBuffer.handle, offset, size, indexType)
@@ -172,7 +172,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Bind a pipeline to the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindPipeline.html">vkCmdBindPipeline</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindPipeline.html">vkCmdBindPipeline Manual Page</a>
      */
     fun bindPipeline(pipeline: Pipeline, pipelineBindPoint: VkPipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS) {
         vkCmdBindPipeline!!(handle, pipelineBindPoint, pipeline.handle)
@@ -181,7 +181,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Bind a vertex buffer to the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindVertexBuffers.html">vkCmdBindVertexBuffers</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindVertexBuffers.html">vkCmdBindVertexBuffers Manual Page</a>
      */
     context(memScope: MemScope)
     fun bindVertexBuffer(vertexBuffer: Buffer, offset: VkDeviceSize = 0u, bindingIndex: UInt = 0u) {
@@ -193,7 +193,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Bind vertex buffers to the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindVertexBuffers.html">vkCmdBindVertexBuffers</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindVertexBuffers.html">vkCmdBindVertexBuffers Manual Page</a>
      */
     context(memScope: MemScope)
     fun bindVertexBuffers(vertexBuffers: List<Buffer>, offsets: List<ULong>, firstBinding: UInt = 0u) {
@@ -205,7 +205,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Bind vertex buffers to the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindVertexBuffers2.html">vkCmdBindVertexBuffers2</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBindVertexBuffers2.html">vkCmdBindVertexBuffers2 Manual Page</a>
      */
     context(memScope: MemScope)
     fun bindVertexBuffers2(vertexBuffers: List<Buffer>, offsets: List<ULong>, firstBinding: UInt = 0u) {
@@ -217,7 +217,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Insert a pipeline barrier for buffer memory.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdPipelineBarrier2.html">vkCmdPipelineBarrier2</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdPipelineBarrier2.html">vkCmdPipelineBarrier2 Manual Page</a>
      */
     context(memScope: MemScope)
     fun bufferMemoryBarrier(barrierInfo: VkBufferMemoryBarrier2.() -> Unit) {
@@ -234,7 +234,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Finish recording the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkEndCommandBuffer.html">vkEndCommandBuffer</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkEndCommandBuffer.html">vkEndCommandBuffer Manual Page</a>
      */
     fun end() {
         vkEndCommandBuffer!!(handle)
@@ -244,7 +244,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * End a dynamic render pass instance.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdEndRendering.html">vkCmdEndRendering</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdEndRendering.html">vkCmdEndRendering Manual Page</a>
      */
     fun endRendering() {
         vkCmdEndRendering!!(handle)
@@ -253,7 +253,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Execute secondary command buffers from the primary command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdExecuteCommands.html">vkCmdExecuteCommands</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdExecuteCommands.html">vkCmdExecuteCommands Manual Page</a>
      */
     context(memScope: MemScope)
     fun executeCommands(commandBuffers: List<CommandBuffer>) {
@@ -264,7 +264,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Draw primitives.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDraw.html">vkCmdDraw</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDraw.html">vkCmdDraw Manual Page</a>
      */
     fun draw(vertexCount: UInt, instanceCount: UInt = 1u, firstVertex: UInt = 0u, firstInstance: UInt = 0u) {
         vkCmdDraw!!(handle, vertexCount, instanceCount, firstVertex, firstInstance)
@@ -273,7 +273,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Draw primitives with indexed vertices.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawIndexed.html">vkCmdDrawIndexed</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawIndexed.html">vkCmdDrawIndexed Manual Page</a>
      */
     fun drawIndexed(indexCount: UInt, instanceCount: UInt = 1u, firstIndex: UInt = 0u, vertexOffset: Int = 0, firstInstance: UInt = 0u) {
         vkCmdDrawIndexed!!(handle, indexCount, instanceCount, firstIndex, vertexOffset, firstInstance)
@@ -282,7 +282,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Draw primitives indirectly.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawIndirect.html">vkCmdDrawIndirect</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawIndirect.html">vkCmdDrawIndirect Manual Page</a>
      */
     fun drawIndirect(buffer: Buffer, offset: ULong, drawCount: UInt, stride: UInt) {
         vkCmdDrawIndirect!!(handle, buffer.handle, offset, drawCount, stride)
@@ -291,7 +291,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Draw primitives with indexed vertices indirectly.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawIndexedIndirect.html">vkCmdDrawIndexedIndirect</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawIndexedIndirect.html">vkCmdDrawIndexedIndirect Manual Page</a>
      */
     fun drawIndexedIndirect(buffer: Buffer, offset: ULong, drawCount: UInt, stride: UInt) {
         vkCmdDrawIndexedIndirect!!(handle, buffer.handle, offset, drawCount, stride)
@@ -300,7 +300,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Insert a pipeline barrier for image memory.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdPipelineBarrier2.html">vkCmdPipelineBarrier2</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdPipelineBarrier2.html">vkCmdPipelineBarrier2 Manual Page</a>
      */
     context(memScope: MemScope)
     fun imageMemoryBarrier(barrierInfo: VkImageMemoryBarrier2.() -> Unit) {
@@ -317,7 +317,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Insert a pipeline barrier.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdPipelineBarrier2.html">vkCmdPipelineBarrier2</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdPipelineBarrier2.html">vkCmdPipelineBarrier2 Manual Page</a>
      */
     context(memScope: MemScope)
     fun pipelineBarrier(dependencyInfo: VkDependencyInfo.() -> Unit) {
@@ -331,7 +331,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Update the values of push constants.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdPushConstants.html">vkCmdPushConstants</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdPushConstants.html">vkCmdPushConstants Manual Page</a>
      */
     fun pushConstants(
         layout: PipelineLayout,
@@ -354,7 +354,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Reset the command buffer to the initial state.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkResetCommandBuffer.html">vkResetCommandBuffer</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkResetCommandBuffer.html">vkResetCommandBuffer Manual Page</a>
      */
     fun reset(flags: UInt = 0u) {
         vkResetCommandBuffer!!(handle, flags)
@@ -364,7 +364,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Set blend constants dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetBlendConstants.html">vkCmdSetBlendConstants</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetBlendConstants.html">vkCmdSetBlendConstants Manual Page</a>
      */
     fun setBlendConstants(r: Float, g: Float, b: Float, a: Float) {
         val blendConstants = floatArrayOf(r, g, b, a)
@@ -376,7 +376,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Set cull mode dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetCullMode.html">vkCmdSetCullMode</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetCullMode.html">vkCmdSetCullMode Manual Page</a>
      */
     fun setCullMode(cullMode: VkCullModeFlags) {
         vkCmdSetCullMode!!(handle, cullMode)
@@ -385,7 +385,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Set depth bias factors and clamp dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDepthBias.html">vkCmdSetDepthBias</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDepthBias.html">vkCmdSetDepthBias Manual Page</a>
      */
     fun setDepthBias(constantFactor: Float, clamp: Float, slopeFactor: Float) {
         vkCmdSetDepthBias!!(handle, constantFactor, clamp, slopeFactor)
@@ -394,7 +394,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Control whether to bias fragment depth values dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDepthBiasEnable.html">vkCmdSetDepthBiasEnable</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDepthBiasEnable.html">vkCmdSetDepthBiasEnable Manual Page</a>
      */
     fun setDepthBiasEnable(enable: Boolean) {
         vkCmdSetDepthBiasEnable!!(handle, enable.toVkBool32())
@@ -403,7 +403,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Enable or disable depth bounds testing dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDepthBoundsTestEnable.html">vkCmdSetDepthBoundsTestEnable</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDepthBoundsTestEnable.html">vkCmdSetDepthBoundsTestEnable Manual Page</a>
      */
     fun setDepthBoundsTestEnable(enable: Boolean) {
         vkCmdSetDepthBoundsTestEnable!!(handle, enable.toVkBool32())
@@ -412,7 +412,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Enable or disable depth testing dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDepthTestEnable.html">vkCmdSetDepthTestEnable</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDepthTestEnable.html">vkCmdSetDepthTestEnable Manual Page</a>
      */
     fun setDepthTestEnable(enable: Boolean) {
         vkCmdSetDepthTestEnable!!(handle, enable.toVkBool32())
@@ -421,7 +421,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Enable or disable writes to the depth buffer dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDepthWriteEnable.html">vkCmdSetDepthWriteEnable</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDepthWriteEnable.html">vkCmdSetDepthWriteEnable Manual Page</a>
      */
     fun setDepthWriteEnable(enable: Boolean) {
         vkCmdSetDepthWriteEnable!!(handle, enable.toVkBool32())
@@ -430,7 +430,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Set depth comparison operator dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDepthCompareOp.html">vkCmdSetDepthCompareOp</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDepthCompareOp.html">vkCmdSetDepthCompareOp Manual Page</a>
      */
     fun setDepthCompareOp(compareOp: VkCompareOp) {
         vkCmdSetDepthCompareOp!!(handle, compareOp)
@@ -439,7 +439,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Set front face orientation dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetFrontFace.html">vkCmdSetFrontFace</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetFrontFace.html">vkCmdSetFrontFace Manual Page</a>
      */
     fun setFrontFace(frontFace: VkFrontFace) {
         vkCmdSetFrontFace!!(handle, frontFace)
@@ -448,7 +448,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Set line width dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetLineWidth.html">vkCmdSetLineWidth</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetLineWidth.html">vkCmdSetLineWidth Manual Page</a>
      */
     fun setLineWidth(lineWidth: Float) {
         vkCmdSetLineWidth!!(handle, lineWidth)
@@ -459,7 +459,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
      *
      * Requires `VK_EXT_extended_dynamic_state3` or `VK_EXT_shader_object` extension.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetPolygonModeEXT.html">vkCmdSetPolygonModeEXT</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetPolygonModeEXT.html">vkCmdSetPolygonModeEXT Manual Page</a>
      */
     fun setPolygonMode(polygonMode: VkPolygonMode) {
         vkCmdSetPolygonModeEXT!!(handle, polygonMode)
@@ -468,7 +468,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Set primitive assembly restart state dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetPrimitiveRestartEnable.html">vkCmdSetPrimitiveRestartEnable</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetPrimitiveRestartEnable.html">vkCmdSetPrimitiveRestartEnable Manual Page</a>
      */
     fun setPrimitiveRestartEnable(enable: Boolean) {
         vkCmdSetPrimitiveRestartEnable!!(handle, enable.toVkBool32())
@@ -477,7 +477,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Set primitive topology dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetPrimitiveTopology.html">vkCmdSetPrimitiveTopology</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetPrimitiveTopology.html">vkCmdSetPrimitiveTopology Manual Page</a>
      */
     fun setPrimitiveTopology(topology: VkPrimitiveTopology) {
         vkCmdSetPrimitiveTopology!!(handle, topology)
@@ -486,7 +486,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Enable or disable rasterizer discard dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetRasterizerDiscardEnable.html">vkCmdSetRasterizerDiscardEnable</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetRasterizerDiscardEnable.html">vkCmdSetRasterizerDiscardEnable Manual Page</a>
      */
     fun setRasterizerDiscardEnable(enable: Boolean) {
         vkCmdSetRasterizerDiscardEnable!!(handle, enable.toVkBool32())
@@ -495,7 +495,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Set scissor rectangles dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetScissor.html">vkCmdSetScissor</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetScissor.html">vkCmdSetScissor Manual Page</a>
      */
     context(memScope: MemScope)
     fun setScissor(scissor: VkRect2D.() -> Unit) {
@@ -506,7 +506,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      *
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetScissorWithCount.html">vkCmdSetScissorWithCount</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetScissorWithCount.html">vkCmdSetScissorWithCount Manual Page</a>
      */
     context(memScope: MemScope)
     fun setScissorWithCount(count: UInt, scissor: VkRect2D.(UInt) -> Unit) {
@@ -517,7 +517,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Set stencil test compare mask dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetStencilCompareMask.html">vkCmdSetStencilCompareMask</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetStencilCompareMask.html">vkCmdSetStencilCompareMask Manual Page</a>
      */
     fun setStencilCompareMask(faceMask: VkStencilFaceFlags, compareMask: UInt) {
         vkCmdSetStencilCompareMask!!(handle, faceMask, compareMask)
@@ -526,7 +526,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Set stencil test actions dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetStencilOp.html">vkCmdSetStencilOp</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetStencilOp.html">vkCmdSetStencilOp Manual Page</a>
      */
     fun setStencilOp(
         faceMask: VkStencilFaceFlags,
@@ -541,7 +541,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Set stencil reference value dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetStencilReference.html">vkCmdSetStencilReference</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetStencilReference.html">vkCmdSetStencilReference Manual Page</a>
      */
     fun setStencilReference(faceMask: VkStencilFaceFlags, reference: UInt) {
         vkCmdSetStencilReference!!(handle, faceMask, reference)
@@ -550,7 +550,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Enable or disable stencil test dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetStencilTestEnable.html">vkCmdSetStencilTestEnable</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetStencilTestEnable.html">vkCmdSetStencilTestEnable Manual Page</a>
      */
     fun setStencilTestEnable(enable: Boolean) {
         vkCmdSetStencilTestEnable!!(handle, enable.toVkBool32())
@@ -559,7 +559,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Set stencil write mask dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetStencilWriteMask.html">vkCmdSetStencilWriteMask</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetStencilWriteMask.html">vkCmdSetStencilWriteMask Manual Page</a>
      */
     fun setStencilWriteMask(faceMask: VkStencilFaceFlags, writeMask: UInt) {
         vkCmdSetStencilWriteMask!!(handle, faceMask, writeMask)
@@ -568,7 +568,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Set viewport transformation parameters dynamically for the command buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetViewport.html">vkCmdSetViewport</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetViewport.html">vkCmdSetViewport Manual Page</a>
      */
     context(memScope: MemScope)
     fun setViewport(viewport: VkViewport.() -> Unit) {
@@ -579,7 +579,7 @@ class CommandBuffer(val handle: VkCommandBuffer) {
     /**
      * Set the viewport count and viewports dynamically for the command buffer
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetViewportWithCount.html">vkCmdSetViewportWithCount</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetViewportWithCount.html">vkCmdSetViewportWithCount Manual Page</a>
      */
     context(memScope: MemScope)
     fun setViewportWithCount(count: UInt, viewport: VkViewport.(UInt) -> Unit) {

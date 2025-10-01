@@ -23,7 +23,7 @@ import kotlin.time.Duration
 /**
  * Wrapper for [VkSwapchainKHR].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkSwapchainKHR.html">VkSwapchainKHR</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkSwapchainKHR.html">VkSwapchainKHR Manual Page</a>
  */
 class Swapchain(
     private val device: VkDevice,
@@ -33,7 +33,7 @@ class Swapchain(
     /**
      * Retrieve the index of the next available presentable image.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkAcquireNextImage2KHR.html">vkAcquireNextImage2KHR</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkAcquireNextImage2KHR.html">vkAcquireNextImage2KHR Manual Page</a>
      */
     context(memScope: MemScope)
     fun acquireNextImage(
@@ -60,7 +60,7 @@ class Swapchain(
     /**
      * Obtain the array of presentable images associated with the swapchain.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetSwapchainImagesKHR.html">vkGetSwapchainImagesKHR</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetSwapchainImagesKHR.html">vkGetSwapchainImagesKHR Manual Page</a>
      */
     context(memScope: MemScope)
     fun getImages(): List<Image> {
@@ -81,7 +81,7 @@ class Swapchain(
     /**
      * Destroy the swapchain.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroySwapchainKHR.html">vkDestroySwapchainKHR</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroySwapchainKHR.html">vkDestroySwapchainKHR Manual Page</a>
      */
     override fun close() {
         vkDestroySwapchainKHR!!(device, handle, null)

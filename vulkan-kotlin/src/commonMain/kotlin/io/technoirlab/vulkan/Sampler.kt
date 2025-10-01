@@ -8,7 +8,7 @@ import kotlinx.cinterop.invoke
 /**
  * Wrapper for [VkSampler].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkSampler.html">VkSampler</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkSampler.html">VkSampler Manual Page</a>
  */
 class Sampler(
     private val device: VkDevice,
@@ -18,7 +18,7 @@ class Sampler(
     /**
      * Destroy the sampler.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroySampler.html">vkDestroySampler</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroySampler.html">vkDestroySampler Manual Page</a>
      */
     override fun close() {
         vkDestroySampler!!(device, handle, null)

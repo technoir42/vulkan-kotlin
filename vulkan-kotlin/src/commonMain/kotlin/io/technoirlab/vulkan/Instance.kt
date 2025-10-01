@@ -21,7 +21,7 @@ import kotlinx.cinterop.value
 /**
  * Wrapper for [VkInstance].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkInstance.html">VkInstance</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkInstance.html">VkInstance Manual Page</a>
  */
 class Instance(val handle: VkInstance) : AutoCloseable {
     init {
@@ -31,7 +31,7 @@ class Instance(val handle: VkInstance) : AutoCloseable {
     /**
      * Create a debug messenger.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateDebugUtilsMessengerEXT.html">vkCreateDebugUtilsMessengerEXT</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateDebugUtilsMessengerEXT.html">vkCreateDebugUtilsMessengerEXT Manual Page</a>
      */
     context(memScope: MemScope)
     fun createDebugUtilsMessenger(createInfo: VkDebugUtilsMessengerCreateInfoEXT.() -> Unit): DebugUtilsMessenger {
@@ -48,7 +48,7 @@ class Instance(val handle: VkInstance) : AutoCloseable {
     /**
      * Enumerates the physical devices accessible to a Vulkan instance.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkEnumeratePhysicalDevices.html">vkEnumeratePhysicalDevices</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkEnumeratePhysicalDevices.html">vkEnumeratePhysicalDevices Manual Page</a>
      */
     context(memScope: MemScope)
     fun enumeratePhysicalDevices(): Sequence<PhysicalDevice> {
@@ -69,7 +69,7 @@ class Instance(val handle: VkInstance) : AutoCloseable {
     /**
      * Destroy the instance of Vulkan.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyInstance.html">vkDestroyInstance</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyInstance.html">vkDestroyInstance Manual Page</a>
      */
     override fun close() {
         vkDestroyInstance!!(handle, null)

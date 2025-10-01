@@ -14,7 +14,7 @@ import kotlinx.cinterop.ptr
 /**
  * Wrapper for [VkSemaphore].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkSemaphore.html">VkSemaphore</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkSemaphore.html">VkSemaphore Manual Page</a>
  */
 class Semaphore(
     private val device: VkDevice,
@@ -24,7 +24,7 @@ class Semaphore(
     /**
      * Signal the timeline semaphore on the host.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkSignalSemaphore.html">vkSignalSemaphore</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkSignalSemaphore.html">vkSignalSemaphore Manual Page</a>
      */
     context(memScope: MemScope)
     fun signal(value: ULong) {
@@ -40,7 +40,7 @@ class Semaphore(
     /**
      * Destroy the semaphore.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroySemaphore.html">vkDestroySemaphore</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroySemaphore.html">vkDestroySemaphore Manual Page</a>
      */
     override fun close() {
         vkDestroySemaphore!!(device, handle, null)

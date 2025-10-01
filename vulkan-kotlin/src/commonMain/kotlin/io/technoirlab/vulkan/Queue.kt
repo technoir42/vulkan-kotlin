@@ -23,7 +23,7 @@ import kotlinx.cinterop.value
 /**
  * Wrapper for [VkQueue].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkQueue.html">VkQueue</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkQueue.html">VkQueue Manual Page</a>
  */
 class Queue(
     val handle: VkQueue,
@@ -32,7 +32,7 @@ class Queue(
     /**
      * Queue an image for presentation.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkQueuePresentKHR.html">vkQueuePresentKHR</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkQueuePresentKHR.html">vkQueuePresentKHR Manual Page</a>
      */
     context(memScope: MemScope)
     fun present(swapChain: Swapchain, imageIndex: UInt, waitSemaphores: List<Semaphore> = emptyList()): VkResult {
@@ -62,7 +62,7 @@ class Queue(
     /**
      * Submits a sequence of semaphores or command buffers to the queue.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkQueueSubmit2.html">vkQueueSubmit2</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkQueueSubmit2.html">vkQueueSubmit2 Manual Page</a>
      */
     context(memScope: MemScope)
     fun submit(fence: Fence? = null, submitInfo: VkSubmitInfo2.() -> Unit) {
@@ -77,7 +77,7 @@ class Queue(
     /**
      * Wait for the queue to become idle.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkQueueWaitIdle.html">vkQueueWaitIdle</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkQueueWaitIdle.html">vkQueueWaitIdle Manual Page</a>
      */
     fun waitIdle() {
         vkQueueWaitIdle!!(handle).checkResult("Failed to wait for queue idle")

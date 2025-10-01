@@ -13,7 +13,7 @@ import kotlinx.cinterop.value
 /**
  * Create a surface for an Android native window.
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateAndroidSurfaceKHR.html">vkCreateAndroidSurfaceKHR</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateAndroidSurfaceKHR.html">vkCreateAndroidSurfaceKHR Manual Page</a>
  */
 context(memScope: MemScope)
 fun Instance.createAndroidSurface(createInfo: VkAndroidSurfaceCreateInfoKHR.() -> Unit): Surface {

@@ -13,7 +13,7 @@ import kotlinx.cinterop.value
 /**
  * Create a surface for a Win32 native window.
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateWin32SurfaceKHR.html">vkCreateWin32SurfaceKHR</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateWin32SurfaceKHR.html">vkCreateWin32SurfaceKHR Manual Page</a>
  */
 context(memScope: MemScope)
 fun Instance.createWin32Surface(createInfo: VkWin32SurfaceCreateInfoKHR.() -> Unit): Surface {

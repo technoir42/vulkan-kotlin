@@ -17,7 +17,7 @@ import kotlin.time.Duration
 /**
  * Wrapper for [VkFence].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkFence.html">VkFence</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkFence.html">VkFence Manual Page</a>
  */
 class Fence(
     private val device: VkDevice,
@@ -27,7 +27,7 @@ class Fence(
     /**
      * Destroy the fence.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyFence.html">vkDestroyFence</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyFence.html">vkDestroyFence Manual Page</a>
      */
     override fun close() {
         vkDestroyFence!!(device, handle, null)
@@ -36,7 +36,7 @@ class Fence(
     /**
      * Resets the status of the fence from signaled to unsignaled state.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkResetFences.html">vkResetFences</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkResetFences.html">vkResetFences Manual Page</a>
      */
     context(memScope: MemScope)
     fun reset() {
@@ -50,7 +50,7 @@ class Fence(
     /**
      * Wait for the fence to become signaled.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkWaitForFences.html">vkWaitForFences</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkWaitForFences.html">vkWaitForFences Manual Page</a>
      */
     context(memScope: MemScope)
     fun wait(timeout: Duration = Duration.INFINITE) {

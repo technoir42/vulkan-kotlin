@@ -26,7 +26,7 @@ import kotlin.math.min
 /**
  * Wrapper for [VkDeviceMemory].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkDeviceMemory.html">VkDeviceMemory</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkDeviceMemory.html">VkDeviceMemory Manual Page</a>
  */
 class DeviceMemory(
     private val device: VkDevice,
@@ -65,7 +65,7 @@ class DeviceMemory(
     /**
      * Map the memory into application address space.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkMapMemory.html">vkMapMemory</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkMapMemory.html">vkMapMemory Manual Page</a>
      */
     context(memScope: MemScope)
     fun map(size: ULong, offset: ULong = 0u): CPointer<out CPointed> {
@@ -81,7 +81,7 @@ class DeviceMemory(
     /**
      * Unmap the previously mapped memory.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkUnmapMemory.html">vkUnmapMemory</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkUnmapMemory.html">vkUnmapMemory Manual Page</a>
      */
     context(memScope: MemScope)
     fun unmap() {
@@ -91,7 +91,7 @@ class DeviceMemory(
     /**
      * Free the device memory.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkFreeMemory.html">vkFreeMemory</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkFreeMemory.html">vkFreeMemory Manual Page</a>
      */
     override fun close() {
         vkFreeMemory!!(device, handle, null)

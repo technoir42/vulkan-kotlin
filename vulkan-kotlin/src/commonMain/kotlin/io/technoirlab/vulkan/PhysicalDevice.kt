@@ -55,13 +55,13 @@ import kotlinx.cinterop.value
 /**
  * Wrapper for [VkPhysicalDevice].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDevice.html">VkPhysicalDevice</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPhysicalDevice.html">VkPhysicalDevice Manual Page</a>
  */
 class PhysicalDevice(val handle: VkPhysicalDevice) {
     /**
      * Create a new device instance.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateDevice.html">vkCreateDevice</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateDevice.html">vkCreateDevice Manual Page</a>
      */
     context(memScope: MemScope)
     fun createDevice(
@@ -98,7 +98,7 @@ class PhysicalDevice(val handle: VkPhysicalDevice) {
     /**
      * Enumerate the extensions supported by the device.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkEnumerateDeviceExtensionProperties.html">vkEnumerateDeviceExtensionProperties</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkEnumerateDeviceExtensionProperties.html">vkEnumerateDeviceExtensionProperties Manual Page</a>
      */
     context(memScope: MemScope)
     fun enumerateDeviceExtensionProperties(): Sequence<VkExtensionProperties> {
@@ -117,7 +117,7 @@ class PhysicalDevice(val handle: VkPhysicalDevice) {
     /**
      * Retrieve the fine-grained features that can be supported by the physical device.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceFeatures2.html">vkGetPhysicalDeviceFeatures2</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceFeatures2.html">vkGetPhysicalDeviceFeatures2 Manual Page</a>
      */
     context(memScope: MemScope)
     fun getFeatures(): Features {
@@ -139,7 +139,7 @@ class PhysicalDevice(val handle: VkPhysicalDevice) {
     /**
      * Retrieve properties of a format supported by the physical device.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceFormatProperties2.html">vkGetPhysicalDeviceFormatProperties2</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceFormatProperties2.html">vkGetPhysicalDeviceFormatProperties2 Manual Page</a>
      */
     context(memScope: MemScope)
     fun getFormatProperties(format: VkFormat): VkFormatProperties2 {
@@ -153,7 +153,7 @@ class PhysicalDevice(val handle: VkPhysicalDevice) {
     /**
      * Retrieve properties of an image format applied to a particular type of image resource.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceImageFormatProperties2.html">vkGetPhysicalDeviceImageFormatProperties2</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceImageFormatProperties2.html">vkGetPhysicalDeviceImageFormatProperties2 Manual Page</a>
      */
     context(memScope: MemScope)
     fun getImageFormatProperties(formatInfo: VkPhysicalDeviceImageFormatInfo2.() -> Unit): VkImageFormatProperties2 {
@@ -172,7 +172,7 @@ class PhysicalDevice(val handle: VkPhysicalDevice) {
     /**
      * Retrieve properties of the physical device's memory.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceMemoryProperties.html">vkGetPhysicalDeviceMemoryProperties</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceMemoryProperties.html">vkGetPhysicalDeviceMemoryProperties Manual Page</a>
      */
     context(memScope: MemScope)
     fun getMemoryProperties(): VkPhysicalDeviceMemoryProperties {
@@ -184,7 +184,7 @@ class PhysicalDevice(val handle: VkPhysicalDevice) {
     /**
      * Retrieve properties of the physical device.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceProperties.html">vkGetPhysicalDeviceProperties</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceProperties.html">vkGetPhysicalDeviceProperties Manual Page</a>
      */
     context(memScope: MemScope)
     fun getProperties(): VkPhysicalDeviceProperties {
@@ -196,7 +196,7 @@ class PhysicalDevice(val handle: VkPhysicalDevice) {
     /**
      * Retrieve properties of the physical device.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceProperties2.html">vkGetPhysicalDeviceProperties2</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceProperties2.html">vkGetPhysicalDeviceProperties2 Manual Page</a>
      */
     context(memScope: MemScope)
     fun getProperties2(): VkPhysicalDeviceProperties2 {
@@ -210,7 +210,7 @@ class PhysicalDevice(val handle: VkPhysicalDevice) {
     /**
      * Retrieve properties of the queues available on the physical device.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceQueueFamilyProperties.html">vkGetPhysicalDeviceQueueFamilyProperties</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceQueueFamilyProperties.html">vkGetPhysicalDeviceQueueFamilyProperties Manual Page</a>
      */
     context(memScope: MemScope)
     fun getQueueFamilyProperties(): Sequence<VkQueueFamilyProperties> {
@@ -229,7 +229,7 @@ class PhysicalDevice(val handle: VkPhysicalDevice) {
     /**
      * Query the basic capabilities of a surface.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceSurfaceCapabilitiesKHR.html">vkGetPhysicalDeviceSurfaceCapabilitiesKHR</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceSurfaceCapabilitiesKHR.html">vkGetPhysicalDeviceSurfaceCapabilitiesKHR Manual Page</a>
      */
     context(memScope: MemScope)
     fun getSurfaceCapabilities(surface: Surface): VkSurfaceCapabilitiesKHR {
@@ -242,7 +242,7 @@ class PhysicalDevice(val handle: VkPhysicalDevice) {
     /**
      * Query color formats supported by a surface.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceSurfaceFormatsKHR.html">vkGetPhysicalDeviceSurfaceFormatsKHR</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceSurfaceFormatsKHR.html">vkGetPhysicalDeviceSurfaceFormatsKHR Manual Page</a>
      */
     context(memScope: MemScope)
     fun getSurfaceFormats(surface: Surface): Sequence<VkSurfaceFormatKHR> {
@@ -263,7 +263,7 @@ class PhysicalDevice(val handle: VkPhysicalDevice) {
     /**
      * Query supported presentation modes for a surface.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceSurfacePresentModesKHR.html">vkGetPhysicalDeviceSurfacePresentModesKHR</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceSurfacePresentModesKHR.html">vkGetPhysicalDeviceSurfacePresentModesKHR Manual Page</a>
      */
     context(memScope: MemScope)
     fun getSurfacePresentModes(surface: Surface): Set<VkPresentModeKHR> {
@@ -284,7 +284,7 @@ class PhysicalDevice(val handle: VkPhysicalDevice) {
     /**
      * Query if presentation is supported.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceSurfaceSupportKHR.html">vkGetPhysicalDeviceSurfaceSupportKHR</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceSurfaceSupportKHR.html">vkGetPhysicalDeviceSurfaceSupportKHR Manual Page</a>
      */
     context(memScope: MemScope)
     fun getSurfaceSupport(surface: Surface, queueFamilyIndex: UInt): Boolean {

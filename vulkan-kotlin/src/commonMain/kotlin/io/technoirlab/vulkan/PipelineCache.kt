@@ -11,7 +11,7 @@ import kotlinx.cinterop.invoke
 /**
  * Wrapper for [VkPipelineCache].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPipelineCache.html">VkPipelineCache</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkPipelineCache.html">VkPipelineCache Manual Page</a>
  */
 class PipelineCache(
     private val device: VkDevice,
@@ -21,7 +21,7 @@ class PipelineCache(
     /**
      * Combine the data stores of pipeline caches.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkMergePipelineCaches.html">vkMergePipelineCaches</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkMergePipelineCaches.html">vkMergePipelineCaches Manual Page</a>
      */
     context(memScope: MemScope)
     fun merge(srcCaches: List<PipelineCache>) {
@@ -33,7 +33,7 @@ class PipelineCache(
     /**
      * Destroy the pipeline cache.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyPipelineCache.html">vkDestroyPipelineCache</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyPipelineCache.html">vkDestroyPipelineCache Manual Page</a>
      */
     override fun close() {
         vkDestroyPipelineCache!!(device, handle, null)

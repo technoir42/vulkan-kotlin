@@ -8,7 +8,7 @@ import kotlinx.cinterop.invoke
 /**
  * Wrapper for [VkBufferView].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkBufferView.html">VkBufferView</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkBufferView.html">VkBufferView Manual Page</a>
  */
 class BufferView(
     private val device: VkDevice,
@@ -18,7 +18,7 @@ class BufferView(
     /**
      * Destroy the buffer view.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyBufferView.html">vkDestroyBufferView</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyBufferView.html">vkDestroyBufferView Manual Page</a>
      */
     override fun close() {
         vkDestroyBufferView!!(device, handle, null)

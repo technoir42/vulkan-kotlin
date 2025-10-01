@@ -22,7 +22,7 @@ import kotlinx.cinterop.ptr
 /**
  * Wrapper for [VkCommandPool].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkCommandPool.html">VkCommandPool</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkCommandPool.html">VkCommandPool Manual Page</a>
  */
 class CommandPool(
     private val device: VkDevice,
@@ -32,7 +32,7 @@ class CommandPool(
     /**
      * Allocate command buffers from the command pool.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkAllocateCommandBuffers.html">vkAllocateCommandBuffers</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkAllocateCommandBuffers.html">vkAllocateCommandBuffers Manual Page</a>
      */
     context(memScope: MemScope)
     fun allocateCommandBuffers(count: Int): List<CommandBuffer> {
@@ -51,7 +51,7 @@ class CommandPool(
     /**
      * Free command buffers.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkFreeCommandBuffers.html">vkFreeCommandBuffers</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkFreeCommandBuffers.html">vkFreeCommandBuffers Manual Page</a>
      */
     context(memScope: MemScope)
     fun freeCommandBuffers(commandBuffers: List<CommandBuffer>) {
@@ -62,7 +62,7 @@ class CommandPool(
     /**
      * Reset the command pool, releasing resources from all command buffers allocated from it.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkResetCommandPool.html">vkResetCommandPool</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkResetCommandPool.html">vkResetCommandPool Manual Page</a>
      */
     fun reset(flags: UInt = 0u) {
         vkResetCommandPool!!(device, handle, flags)
@@ -72,7 +72,7 @@ class CommandPool(
     /**
      * Trim internal memory allocations owned by the command pool.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkTrimCommandPool.html">vkTrimCommandPool</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkTrimCommandPool.html">vkTrimCommandPool Manual Page</a>
      */
     fun trim(flags: UInt = 0u) {
         vkTrimCommandPool!!(device, handle, flags)
@@ -81,7 +81,7 @@ class CommandPool(
     /**
      * Destroy the command pool.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyCommandPool.html">vkDestroyCommandPool</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyCommandPool.html">vkDestroyCommandPool Manual Page</a>
      */
     override fun close() {
         vkDestroyCommandPool!!(device, handle, null)

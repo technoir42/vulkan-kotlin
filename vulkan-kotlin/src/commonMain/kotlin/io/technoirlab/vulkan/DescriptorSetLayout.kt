@@ -8,7 +8,7 @@ import kotlinx.cinterop.invoke
 /**
  * Wrapper for [VkDescriptorSetLayout].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkDescriptorSetLayout.html">VkDescriptorSetLayout</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkDescriptorSetLayout.html">VkDescriptorSetLayout Manual Page</a>
  */
 class DescriptorSetLayout(
     private val device: VkDevice,
@@ -18,7 +18,7 @@ class DescriptorSetLayout(
     /**
      * Destroy the descriptor set layout.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyDescriptorSetLayout.html">vkDestroyDescriptorSetLayout</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyDescriptorSetLayout.html">vkDestroyDescriptorSetLayout Manual Page</a>
      */
     override fun close() {
         vkDestroyDescriptorSetLayout!!(device, handle, null)

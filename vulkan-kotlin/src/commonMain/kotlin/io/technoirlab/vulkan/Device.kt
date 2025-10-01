@@ -110,7 +110,7 @@ import kotlinx.cinterop.value
 /**
  * Wrapper for [VkDevice].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkDevice.html">VkDevice</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkDevice.html">VkDevice Manual Page</a>
  */
 class Device(
     val handle: VkDevice
@@ -123,7 +123,7 @@ class Device(
     /**
      * Allocate device memory.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkAllocateMemory.html">vkAllocateMemory</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkAllocateMemory.html">vkAllocateMemory Manual Page</a>
      */
     context(memScope: MemScope)
     fun allocateMemory(allocateInfo: VkMemoryAllocateInfo.() -> Unit): DeviceMemory {
@@ -140,7 +140,7 @@ class Device(
     /**
      * Create a new buffer.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateBuffer.html">vkCreateBuffer</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateBuffer.html">vkCreateBuffer Manual Page</a>
      */
     context(memScope: MemScope)
     fun createBuffer(createInfo: VkBufferCreateInfo.() -> Unit): Buffer {
@@ -157,7 +157,7 @@ class Device(
     /**
      * Create a new buffer view.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateBufferView.html">vkCreateBufferView</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateBufferView.html">vkCreateBufferView Manual Page</a>
      */
     context(memScope: MemScope)
     fun createBufferView(createInfo: VkBufferViewCreateInfo.() -> Unit): BufferView {
@@ -174,7 +174,7 @@ class Device(
     /**
      * Create a new command pool.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateCommandPool.html">vkCreateCommandPool</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateCommandPool.html">vkCreateCommandPool Manual Page</a>
      */
     context(memScope: MemScope)
     fun createCommandPool(createInfo: VkCommandPoolCreateInfo.() -> Unit): CommandPool {
@@ -191,7 +191,7 @@ class Device(
     /**
      * Create a new descriptor pool.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateDescriptorPool.html">vkCreateDescriptorPool</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateDescriptorPool.html">vkCreateDescriptorPool Manual Page</a>
      */
     context(memScope: MemScope)
     fun createDescriptorPool(createInfo: VkDescriptorPoolCreateInfo.() -> Unit): DescriptorPool {
@@ -208,7 +208,7 @@ class Device(
     /**
      * Create a new descriptor set layout.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateDescriptorSetLayout.html">vkCreateDescriptorSetLayout</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateDescriptorSetLayout.html">vkCreateDescriptorSetLayout Manual Page</a>
      */
     context(memScope: MemScope)
     fun createDescriptorSetLayout(createInfo: VkDescriptorSetLayoutCreateInfo.() -> Unit): DescriptorSetLayout {
@@ -225,7 +225,7 @@ class Device(
     /**
      * Create a new image.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateImage.html">vkCreateImage</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateImage.html">vkCreateImage Manual Page</a>
      */
     context(memScope: MemScope)
     fun createImage(createInfo: VkImageCreateInfo.() -> Unit): Image {
@@ -242,7 +242,7 @@ class Device(
     /**
      * Create an image view from an existing image.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateImageView.html">vkCreateImageView</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateImageView.html">vkCreateImageView Manual Page</a>
      */
     context(memScope: MemScope)
     fun createImageView(createInfo: VkImageViewCreateInfo.() -> Unit): ImageView {
@@ -259,7 +259,7 @@ class Device(
     /**
      * Create a new fence.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateFence.html">vkCreateFence</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateFence.html">vkCreateFence Manual Page</a>
      */
     context(memScope: MemScope)
     fun createFence(createInfo: VkFenceCreateInfo.() -> Unit = {}): Fence {
@@ -276,7 +276,7 @@ class Device(
     /**
      * Create a new graphics pipeline.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateGraphicsPipelines.html">vkCreateGraphicsPipelines</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateGraphicsPipelines.html">vkCreateGraphicsPipelines Manual Page</a>
      */
     context(memScope: MemScope)
     @Suppress("LongParameterList", "LongMethod")
@@ -369,7 +369,7 @@ class Device(
     /**
      * Create a new pipeline cache.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreatePipelineCache.html">vkCreatePipelineCache</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreatePipelineCache.html">vkCreatePipelineCache Manual Page</a>
      */
     context(memScope: MemScope)
     fun createPipelineCache(createInfo: VkPipelineCacheCreateInfo.() -> Unit = {}): PipelineCache {
@@ -386,7 +386,7 @@ class Device(
     /**
      * Create a new pipeline layout.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreatePipelineLayout.html">vkCreatePipelineLayout</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreatePipelineLayout.html">vkCreatePipelineLayout Manual Page</a>
      */
     context(memScope: MemScope)
     fun createPipelineLayout(createInfo: VkPipelineLayoutCreateInfo.() -> Unit = {}): PipelineLayout {
@@ -403,7 +403,7 @@ class Device(
     /**
      * Create a new query pool.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateQueryPool.html">vkCreateQueryPool</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateQueryPool.html">vkCreateQueryPool Manual Page</a>
      */
     context(memScope: MemScope)
     fun createQueryPool(createInfo: VkQueryPoolCreateInfo.() -> Unit): QueryPool {
@@ -420,7 +420,7 @@ class Device(
     /**
      * Create a new sampler.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateSampler.html">vkCreateSampler</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateSampler.html">vkCreateSampler Manual Page</a>
      */
     context(memScope: MemScope)
     fun createSampler(createInfo: VkSamplerCreateInfo.() -> Unit): Sampler {
@@ -437,7 +437,7 @@ class Device(
     /**
      * Create a new queue semaphore.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateSemaphore.html">vkCreateSemaphore</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateSemaphore.html">vkCreateSemaphore Manual Page</a>
      */
     context(memScope: MemScope)
     fun createSemaphore(createInfo: VkSemaphoreCreateInfo.() -> Unit = {}): Semaphore {
@@ -454,7 +454,7 @@ class Device(
     /**
      * Create a new shader module.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateShaderModule.html">vkCreateShaderModule</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateShaderModule.html">vkCreateShaderModule Manual Page</a>
      */
     context(memScope: MemScope)
     fun createShaderModule(createInfo: VkShaderModuleCreateInfo.() -> Unit): ShaderModule {
@@ -471,7 +471,7 @@ class Device(
     /**
      * Create a swapchain.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateSwapchainKHR.html">vkCreateSwapchainKHR</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateSwapchainKHR.html">vkCreateSwapchainKHR Manual Page</a>
      */
     context(memScope: MemScope)
     fun createSwapchain(createInfo: VkSwapchainCreateInfoKHR.() -> Unit): Swapchain {
@@ -488,7 +488,7 @@ class Device(
     /**
      * Update descriptor sets.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkUpdateDescriptorSets.html">vkUpdateDescriptorSets</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkUpdateDescriptorSets.html">vkUpdateDescriptorSets Manual Page</a>
      */
     context(memScope: MemScope)
     fun updateDescriptorSets(writes: List<VkWriteDescriptorSet>, copies: List<VkCopyDescriptorSet> = emptyList()) {
@@ -520,7 +520,7 @@ class Device(
     /**
      * Get a queue from the device.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDeviceQueue.html">vkGetDeviceQueue</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDeviceQueue.html">vkGetDeviceQueue Manual Page</a>
      */
     context(memScope: MemScope)
     fun getQueue(queueFamilyIndex: UInt, queueIndex: UInt = 0u): Queue {
@@ -532,7 +532,7 @@ class Device(
     /**
      * Wait for the device to become idle.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDeviceWaitIdle.html">vkDeviceWaitIdle</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDeviceWaitIdle.html">vkDeviceWaitIdle Manual Page</a>
      */
     fun waitIdle() {
         vkDeviceWaitIdle!!(handle).checkResult("Failed to wait for device idle")
@@ -541,7 +541,7 @@ class Device(
     /**
      * Destroy the logical device.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyDevice.html">vkDestroyDevice</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyDevice.html">vkDestroyDevice Manual Page</a>
      */
     override fun close() {
         vkDestroyDevice!!(handle, null)

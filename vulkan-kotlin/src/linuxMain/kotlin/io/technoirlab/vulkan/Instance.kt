@@ -13,7 +13,7 @@ import kotlinx.cinterop.value
 /**
  * Create a surface for a Wayland window.
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateWaylandSurfaceKHR.html">vkCreateWaylandSurfaceKHR</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateWaylandSurfaceKHR.html">vkCreateWaylandSurfaceKHR Manual Page</a>
  */
 context(memScope: MemScope)
 fun Instance.createWaylandSurface(createInfo: VkWaylandSurfaceCreateInfoKHR.() -> Unit): Surface {

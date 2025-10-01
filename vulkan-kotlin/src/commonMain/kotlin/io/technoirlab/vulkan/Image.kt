@@ -20,7 +20,7 @@ import kotlinx.cinterop.ptr
 /**
  * Wrapper for [VkImage].
  *
- * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkImage.html">VkImage</a>
+ * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/VkImage.html">VkImage Manual Page</a>
  */
 class Image(
     private val device: VkDevice,
@@ -31,7 +31,7 @@ class Image(
     /**
      * Returns memory requirements for the image.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetImageMemoryRequirements2.html">vkGetImageMemoryRequirements2</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetImageMemoryRequirements2.html">vkGetImageMemoryRequirements2 Manual Page</a>
      */
     context(memScope: MemScope)
     fun getMemoryRequirements(): VkMemoryRequirements {
@@ -49,7 +49,7 @@ class Image(
     /**
      * Bind device memory to the image.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkBindImageMemory2.html">vkBindImageMemory2</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkBindImageMemory2.html">vkBindImageMemory2 Manual Page</a>
      */
     context(memScope: MemScope)
     fun bindMemory(memory: DeviceMemory, offset: ULong = 0u) {
@@ -66,7 +66,7 @@ class Image(
     /**
      * Destroy the image.
      *
-     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyImage.html">vkDestroyImage</a>
+     * @see <a href="https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyImage.html">vkDestroyImage Manual Page</a>
      */
     override fun close() {
         if (destroyable) {
