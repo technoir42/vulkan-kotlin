@@ -54,5 +54,6 @@ jobs:
       - name: Build with Gradle
         run: |
           ./gradlew build \
+          --scan \
           -Pgpr.user=${{ github.repository_owner }} \
           -Pgpr.token=${{ secrets.GITHUB_TOKEN }}

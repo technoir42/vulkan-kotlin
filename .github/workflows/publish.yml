@@ -55,6 +55,7 @@ jobs:
           SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
         run: |
           ./gradlew publish \
+          --scan \
           -Pgpr.user=${{ github.repository_owner }} \
           -Pgpr.token=${{ secrets.GITHUB_TOKEN }} \
           -Pproject.version=${{ github.ref_name }} \
@@ -70,6 +71,7 @@ jobs:
           SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
         run: |
           ./gradlew publishAggregationToCentralPortal \
+          --scan \
           -Pgpr.user=${{ github.repository_owner }} \
           -Pgpr.token=${{ secrets.GITHUB_TOKEN }} \
           -Pproject.version=${{ github.ref_name }}
@@ -125,6 +127,7 @@ jobs:
       - name: Generate documentation
         run: |
           ./gradlew :vulkan-kotlin:dokkaGenerate \
+          --scan \
           -Pgpr.user=${{ github.repository_owner }} \
           -Pgpr.token=${{ secrets.GITHUB_TOKEN }} \
           -Pproject.version=${{ github.ref_name }}
