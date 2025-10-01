@@ -126,7 +126,8 @@ jobs:
         run: |
           ./gradlew :vulkan-kotlin:dokkaGenerate \
           -Pgpr.user=${{ github.repository_owner }} \
-          -Pgpr.token=${{ secrets.GITHUB_TOKEN }}
+          -Pgpr.token=${{ secrets.GITHUB_TOKEN }} \
+          -Pproject.version=${{ github.ref_name }}
 
       - name: Upload documentation
         uses: actions/upload-pages-artifact@v3
